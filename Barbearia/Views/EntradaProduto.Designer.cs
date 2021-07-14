@@ -98,6 +98,7 @@ namespace Barbersoft.Views
             this.btnAdd.Size = new System.Drawing.Size(51, 44);
             this.btnAdd.TabIndex = 7;
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdicionar);
             // 
             // label2
             // 

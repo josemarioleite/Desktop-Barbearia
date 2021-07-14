@@ -1,6 +1,7 @@
 ﻿using Barbearia.Database;
 using Barbearia.Models;
 using Barbersoft.Models.DTO;
+using Barbersoft.Views.FormCrud;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Drawing;
@@ -67,6 +68,13 @@ namespace Barbersoft.Views
         {
             RecebeDadosBanco();
             ConfiguraDataGrid();
+        }
+
+        private void BtnAdicionar(object sender, System.EventArgs e)
+        {
+            FormEntradaProduto entradaProduto = new();
+            entradaProduto.ShowDialog();
+            //RecebeDadosBanco();
         }
     }
 }
