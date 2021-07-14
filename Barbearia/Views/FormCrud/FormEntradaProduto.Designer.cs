@@ -116,6 +116,7 @@ namespace Barbersoft.Views.FormCrud
             // cbProduto
             // 
             this.cbProduto.BackColor = System.Drawing.Color.White;
+            this.cbProduto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbProduto.FormattingEnabled = true;
             this.cbProduto.Location = new System.Drawing.Point(213, 112);
             this.cbProduto.Name = "cbProduto";
@@ -124,12 +125,14 @@ namespace Barbersoft.Views.FormCrud
             // 
             // txtQuantidade
             // 
+            this.txtQuantidade.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtQuantidade.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtQuantidade.Location = new System.Drawing.Point(498, 112);
+            this.txtQuantidade.Location = new System.Drawing.Point(498, 114);
             this.txtQuantidade.Name = "txtQuantidade";
-            this.txtQuantidade.Size = new System.Drawing.Size(179, 23);
+            this.txtQuantidade.Size = new System.Drawing.Size(179, 16);
             this.txtQuantidade.TabIndex = 34;
             this.txtQuantidade.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtQuantidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EntradaProdutoKeyPress);
             // 
             // label2
             // 
@@ -174,12 +177,14 @@ namespace Barbersoft.Views.FormCrud
             this.dtDataCompra.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dtDataCompra.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtDataCompra.Location = new System.Drawing.Point(0, 108);
+            this.dtDataCompra.MaxDate = new System.DateTime(2021, 7, 14, 0, 0, 0, 0);
             this.dtDataCompra.MinimumSize = new System.Drawing.Size(4, 35);
             this.dtDataCompra.Name = "dtDataCompra";
             this.dtDataCompra.Size = new System.Drawing.Size(195, 35);
             this.dtDataCompra.SkinColor = System.Drawing.Color.White;
             this.dtDataCompra.TabIndex = 38;
             this.dtDataCompra.TextColor = System.Drawing.Color.Black;
+            this.dtDataCompra.Value = new System.DateTime(2021, 7, 14, 0, 0, 0, 0);
             // 
             // FormEntradaProduto
             // 

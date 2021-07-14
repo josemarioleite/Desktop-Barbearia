@@ -90,7 +90,7 @@ namespace Barbearia.Database
             {
                 entity.ToTable("entrada_produto");
 
-                entity.HasIndex(e => e.IdProduto, "Produto_idx");
+                entity.HasIndex(e => e.Id_Produto, "Produto_idx");
 
                 entity.Property(e => e.AlteradoEm).HasColumnType("datetime");
 
@@ -109,13 +109,13 @@ namespace Barbearia.Database
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                entity.Property(e => e.IdProduto).HasColumnName("Id_Produto");
+                entity.Property(e => e.Id_Produto).HasColumnName("Id_Produto");
 
                 entity.Property(e => e.Quantidade).HasPrecision(10, 2);
 
                 entity.HasOne(d => d.IdProdutoNavigation)
                     .WithMany(p => p.EntradaProdutos)
-                    .HasForeignKey(d => d.IdProduto)
+                    .HasForeignKey(d => d.Id_Produto)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Produto");
             });

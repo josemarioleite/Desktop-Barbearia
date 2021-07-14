@@ -8,8 +8,7 @@ namespace Barbearia.Models
     public partial class EntradaProduto
     {
         public int Id { get; set; }
-        public int IdProduto { get; set; }
-        public Produto Produto { get; set; }
+        public int Id_Produto { get; set; }
         public decimal Quantidade { get; set; }
         public DateTime Data { get; set; }
         public string Ativo { get; set; }

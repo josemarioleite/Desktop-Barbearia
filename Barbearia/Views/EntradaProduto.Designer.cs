@@ -31,10 +31,8 @@ namespace Barbersoft.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntradaProduto));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAlterar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtadd = new System.Windows.Forms.Label();
@@ -49,10 +47,8 @@ namespace Barbersoft.Views
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.panel1.Controls.Add(this.btnAlterar);
             this.panel1.Controls.Add(this.btnExcluir);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.txtadd);
@@ -63,29 +59,18 @@ namespace Barbersoft.Views
             this.panel1.Size = new System.Drawing.Size(604, 74);
             this.panel1.TabIndex = 2;
             // 
-            // btnAlterar
-            // 
-            this.btnAlterar.BackgroundImage = global::Barbersoft.Properties.Resources.update;
-            this.btnAlterar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAlterar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAlterar.ForeColor = System.Drawing.Color.White;
-            this.btnAlterar.Location = new System.Drawing.Point(82, 10);
-            this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(51, 44);
-            this.btnAlterar.TabIndex = 9;
-            this.btnAlterar.UseVisualStyleBackColor = true;
-            // 
             // btnExcluir
             // 
             this.btnExcluir.BackgroundImage = global::Barbersoft.Properties.Resources.Delete;
             this.btnExcluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcluir.ForeColor = System.Drawing.Color.White;
-            this.btnExcluir.Location = new System.Drawing.Point(152, 10);
+            this.btnExcluir.Location = new System.Drawing.Point(78, 10);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(51, 44);
             this.btnExcluir.TabIndex = 8;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.BtnExcluir);
             // 
             // btnAdd
             // 
@@ -100,23 +85,12 @@ namespace Barbersoft.Views
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdicionar);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(89, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Alterar";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(159, 57);
+            this.label1.Location = new System.Drawing.Point(84, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 5;
@@ -154,11 +128,16 @@ namespace Barbersoft.Views
             // 
             // dgEntradaProduto
             // 
+            this.dgEntradaProduto.AllowUserToAddRows = false;
+            this.dgEntradaProduto.AllowUserToDeleteRows = false;
+            this.dgEntradaProduto.AllowUserToResizeColumns = false;
+            this.dgEntradaProduto.AllowUserToResizeRows = false;
             this.dgEntradaProduto.BackgroundColor = System.Drawing.Color.White;
             this.dgEntradaProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEntradaProduto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgEntradaProduto.Location = new System.Drawing.Point(0, 0);
             this.dgEntradaProduto.Name = "dgEntradaProduto";
+            this.dgEntradaProduto.ReadOnly = true;
             this.dgEntradaProduto.RowTemplate.Height = 25;
             this.dgEntradaProduto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgEntradaProduto.Size = new System.Drawing.Size(604, 418);
@@ -191,10 +170,8 @@ namespace Barbersoft.Views
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label txtadd;

@@ -28,7 +28,6 @@ namespace Barbersoft.Views.FormCrud
 
             IniciaCamposPreenchidos();
         }
-
         private void TxtKeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))

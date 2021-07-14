@@ -1,8 +1,10 @@
 ﻿using Barbearia.Database;
+using Barbearia.Log;
 using Barbearia.Models;
 using Barbersoft.Models.DTO;
 using Barbersoft.Views.FormCrud;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -23,7 +25,7 @@ namespace Barbersoft.Views
         private void RecebeDadosBanco()
         {
             List<EntradaProdutoDTO> entradaProduto = (from a in barbersoftContext.EntradaProduto
-                                 join b in barbersoftContext.Produto on a.IdProduto equals b.Id
+                                 join b in barbersoftContext.Produto on a.Id_Produto equals b.Id
                                  select new EntradaProdutoDTO()
                                  {
                                      Id = a.Id,
@@ -69,12 +71,37 @@ namespace Barbersoft.Views
             RecebeDadosBanco();
             ConfiguraDataGrid();
         }
-
         private void BtnAdicionar(object sender, System.EventArgs e)
         {
-            FormEntradaProduto entradaProduto = new();
+            FormEntradaProduto entradaProduto = new(true);
             entradaProduto.ShowDialog();
-            //RecebeDadosBanco();
+            RecebeDadosBanco();
+        }
+        private Barbearia.Models.EntradaProduto ObtemDadosEntradaProdutoPorID(int id)
+        {
+            return barbersoftContext.EntradaProduto.FirstOrDefault(p => p.Id == id);
+        }
+        private void BtnExcluir(object sender, System.EventArgs e)
+        {
+            Logging log = new();
+
+            int id = (int)dgEntradaProduto.SelectedRows[0].Cells[0].Value;
+            Barbearia.Models.EntradaProduto entradaProduto = ObtemDadosEntradaProdutoPorID(id);
+            DialogResult dialogResult = MessageBox.Show($"Tem certeza que gostaria de excluir esta entrada de produto ?", "Atenção", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    barbersoftContext.EntradaProduto.Remove(entradaProduto);
+                    barbersoftContext.SaveChanges();
+                    RecebeDadosBanco();
+                }
+                catch (Exception ex)
+                {
+                    log.Log(ex);
+                    MessageBox.Show("Não foi possível excluir esta entrada de produto");
+                }
+            }
         }
     }
 }
