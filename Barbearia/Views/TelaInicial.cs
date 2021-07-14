@@ -16,7 +16,6 @@ namespace Barbearia.Views
             var produto = new Produto();
             produto.ShowDialog();
         }
-
         private void BtnSair(object sender, EventArgs e)
         {
             var mensagem = MessageBox.Show("Deseja mesmo sair ?", "Atenção", MessageBoxButtons.YesNo);
@@ -26,19 +25,16 @@ namespace Barbearia.Views
                 Application.Exit();
             }
         }
-
         private void BtnProfissional(object sender, EventArgs e)
         {
             Profissional profisional = new();
             profisional.ShowDialog();
         }
-
         private void BtnServico(object sender, EventArgs e)
         {
             Servico servico = new();
             servico.ShowDialog();
         }
-
         private void BtnEntradaProduto(object sender, EventArgs e)
         {
             EntradaProduto entradaProduto = new();
