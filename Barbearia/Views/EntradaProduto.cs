@@ -103,5 +103,10 @@ namespace Barbersoft.Views
                 }
             }
         }
+        private void BtnEstoque(object sender, EventArgs e)
+        {
+            EstoqueProduto estoque = new();
+            estoque.ShowDialog();
+        }
     }
 }

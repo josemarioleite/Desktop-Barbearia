@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Barbearia": {
+      "commandName": "Project"
+    },
+    "Barbersoft": {
+      "commandName": "Executable"
+    }
+  }
+}

@@ -38,11 +38,9 @@ namespace Barbearia.Views
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtadd = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.dgServico = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServico)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,15 +144,6 @@ namespace Barbearia.Views
             this.txtadd.TabIndex = 1;
             this.txtadd.Text = "Adicionar";
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dgServico);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 74);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(591, 418);
-            this.panel2.TabIndex = 2;
-            // 
             // dgServico
             // 
             this.dgServico.AllowUserToAddRows = false;
@@ -164,14 +153,12 @@ namespace Barbearia.Views
             this.dgServico.BackgroundColor = System.Drawing.Color.White;
             this.dgServico.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgServico.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgServico.Location = new System.Drawing.Point(0, 0);
-            this.dgServico.MultiSelect = false;
+            this.dgServico.Location = new System.Drawing.Point(0, 74);
             this.dgServico.Name = "dgServico";
-            this.dgServico.ReadOnly = true;
             this.dgServico.RowTemplate.Height = 25;
             this.dgServico.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgServico.Size = new System.Drawing.Size(591, 418);
-            this.dgServico.TabIndex = 3;
+            this.dgServico.TabIndex = 2;
             // 
             // Servico
             // 
@@ -179,7 +166,7 @@ namespace Barbearia.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(591, 492);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dgServico);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -192,7 +179,6 @@ namespace Barbearia.Views
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgServico)).EndInit();
             this.ResumeLayout(false);
 
@@ -208,7 +194,6 @@ namespace Barbearia.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label txtadd;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgServico;
     }
 }
