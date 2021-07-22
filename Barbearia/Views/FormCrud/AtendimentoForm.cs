@@ -1,0 +1,146 @@
+﻿using Barbearia.Database;
+using Barbearia.Log;
+using Barbearia.Views;
+using Barbersoft.Models;
+using System;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace Barbersoft.Views.FormCrud
+{
+    public partial class formAtendimento : Form
+    {
+        private readonly bool modoInclusao;
+        public formAtendimento(bool inclusao)
+        {
+            InitializeComponent();
+
+            modoInclusao = inclusao;
+        }
+        private void CamposPreenchidos()
+        {
+            BarbersoftContext database = new();
+            if (modoInclusao == true)
+            {
+                cbCliente.DataSource = database.Cliente.ToList();
+                cbProfissional.DataSource = database.Profissional.ToList();
+                dtData.Text = DateTime.Now.ToString();
+
+                cbProfissional.ValueMember = "Id";
+                cbCliente.ValueMember = "Id";
+
+                cbCliente.DisplayMember = "Nome";
+                cbProfissional.DisplayMember = "Nome";
+            }
+        }
+        private void BtnSalvar(object sender, EventArgs e)
+        {
+            BarbersoftContext database = new();
+            Logging log = new();
+
+            if (modoInclusao == true)
+            {
+                Atendimento atendimento = new()
+                {
+                    ClienteId = (int)cbCliente.SelectedValue,
+                    ProfissionalId = (int)cbProfissional.SelectedValue
+                };
+
+                atendimento.CriadoEm = DateTime.Now;
+                atendimento.CriadoPor = Usuario.UsuarioAtivo.Id;
+                atendimento.Ativo = "S";
+                atendimento.SituacaoId = 2;
+                try
+                {
+                    if (atendimento.ClienteId > 0 && atendimento.ProfissionalId > 0)
+                    {
+                        database.Atendimento.Add(atendimento);
+                        database.SaveChanges();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("o Campo Cliente e Profissional devem estar preenchidos");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Não foi possível fazer a inclusão, tente novamente mais tarde");
+                    log.Log(ex);
+                }
+            } 
+            //else
+            //{
+            //    Atendimento atendimento = new()
+            //    {
+            //        SituacaoId = (int)cbSituacao.SelectedValue,
+            //        Id = _atendimento.Id,
+            //        Ativo = _atendimento.Ativo,
+            //        CriadoEm = DateTime.Parse(dtData.Text),
+            //        CriadoPor = _atendimento.CriadoPor,
+            //        ClienteId = _atendimento.ClienteId,
+            //        ProfissionalId = _atendimento.ProfissionalId,
+            //        AlteradoPor = Usuario.UsuarioAtivo.Id,
+            //        AlteradoEm = DateTime.Now
+            //     };
+                
+            //    database.Entry(atendimento).State = EntityState.Modified;
+            //    database.Entry(atendimento).Property(p => p.DeletadoEm).IsModified = false;
+            //    database.Entry(atendimento).Property(p => p.DeletadoPor).IsModified = false;
+
+            //    try
+            //    {
+            //        if (atendimento.SituacaoId > 0)
+            //        {
+            //            database.Atendimento.Update(atendimento);
+            //            database.SaveChanges();
+            //            this.Close();
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("O Campo Situação devem estar preenchido");
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Não foi possível fazer a alteração, tente novamente mais tarde");
+            //        log.Log(ex);
+            //    }
+            //}
+        }
+        private void BtnSair(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void AtendimentoLoad(object sender, EventArgs e)
+        {
+            CamposPreenchidos();
+            if (modoInclusao == true)
+            {
+                cbSituacao.Visible = false;
+                linhaSituacao.Visible = false;
+                lblSituacao.Visible = false;
+
+                lblData.Visible = false;
+                linhaData.Visible = false;
+                dtData.Visible = false;
+            }
+            this.KeyPreview = true;
+        }
+        private void Atendimento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.Shift == true && e.KeyCode == Keys.C)
+            {
+                ClienteView cliente = new();
+                cliente.ShowDialog();
+            }
+
+            if (e.Control == true && e.Shift == true && e.KeyCode == Keys.P)
+            {
+                ProfissionalView profissional = new();
+                profissional.ShowDialog();
+            }
+            CamposPreenchidos();
+        }
+    }
+}

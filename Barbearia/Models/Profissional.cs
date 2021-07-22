@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace Barbearia.Models
+#nullable disable
+
+namespace Barbersoft.Models
 {
     public partial class Profissional
     {

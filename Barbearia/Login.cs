@@ -1,6 +1,6 @@
 ﻿using Barbearia.Database;
-using Barbearia.Models;
 using Barbearia.Views;
+using Barbersoft.Models;
 using System.Windows.Forms;
 
 namespace Barbearia
@@ -13,6 +13,7 @@ namespace Barbearia
             InitializeComponent();
             database = new Databases();
             VerificaConexao();
+            lblVersao.Text = Sistema.Versao;
         }
 
         public bool VerificaConexao()
@@ -36,18 +37,17 @@ namespace Barbearia
         {
             Application.Exit();
         }
-
         private void BtnEntrar(object sender, System.EventArgs e)
         {
             
             bool bancoConectado = this.VerificaConexao();
             if (bancoConectado)
             {
-                bool logado = database.Autenticacao(txtLogin.Text, txtSenha.Text);
+                bool logado = database.Autenticacao(txtLogin.Text.ToLower(), txtSenha.Text);
                 if (logado)
                 {
                     this.Hide();
-                    var telaInicial = new TelaInicial();
+                    var telaInicial = new TelaInicialView();
                     telaInicial.Closed += (s, args) => this.Close();
                     telaInicial.Show();
                 }

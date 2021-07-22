@@ -34,18 +34,18 @@ namespace Barbearia.Views.FormCrud
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtCPF = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.txtCelularTelefone = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtPorcentagem = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.txtCelularTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,15 +87,6 @@ namespace Barbearia.Views.FormCrud
             this.label3.Size = new System.Drawing.Size(28, 15);
             this.label3.TabIndex = 29;
             this.label3.Text = "CPF";
-            // 
-            // txtCPF
-            // 
-            this.txtCPF.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCPF.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCPF.Location = new System.Drawing.Point(282, 114);
-            this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(250, 16);
-            this.txtCPF.TabIndex = 28;
             // 
             // txtNome
             // 
@@ -152,15 +143,6 @@ namespace Barbearia.Views.FormCrud
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.BtnSair);
             // 
-            // txtCelularTelefone
-            // 
-            this.txtCelularTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCelularTelefone.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCelularTelefone.Location = new System.Drawing.Point(12, 202);
-            this.txtCelularTelefone.Name = "txtCelularTelefone";
-            this.txtCelularTelefone.Size = new System.Drawing.Size(251, 16);
-            this.txtCelularTelefone.TabIndex = 35;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -209,23 +191,43 @@ namespace Barbearia.Views.FormCrud
             this.panel5.Size = new System.Drawing.Size(250, 1);
             this.panel5.TabIndex = 36;
             // 
+            // txtCelularTelefone
+            // 
+            this.txtCelularTelefone.BackColor = System.Drawing.Color.White;
+            this.txtCelularTelefone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCelularTelefone.Location = new System.Drawing.Point(13, 202);
+            this.txtCelularTelefone.Mask = "(00)0 0000-0000";
+            this.txtCelularTelefone.Name = "txtCelularTelefone";
+            this.txtCelularTelefone.Size = new System.Drawing.Size(250, 16);
+            this.txtCelularTelefone.TabIndex = 39;
+            // 
+            // txtCPF
+            // 
+            this.txtCPF.BackColor = System.Drawing.Color.White;
+            this.txtCPF.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCPF.Location = new System.Drawing.Point(285, 114);
+            this.txtCPF.Mask = "000\\.000\\.000-00";
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(247, 16);
+            this.txtCPF.TabIndex = 40;
+            // 
             // ProfissionalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(551, 311);
+            this.Controls.Add(this.txtCPF);
+            this.Controls.Add(this.txtCelularTelefone);
             this.Controls.Add(this.txtPorcentagem);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.txtCelularTelefone);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtCPF);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
@@ -250,17 +252,17 @@ namespace Barbearia.Views.FormCrud
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox txtCelularTelefone;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtPorcentagem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.MaskedTextBox txtCelularTelefone;
+        private System.Windows.Forms.MaskedTextBox txtCPF;
     }
 }

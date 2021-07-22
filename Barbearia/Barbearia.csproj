@@ -15,8 +15,12 @@
   
   <ItemGroup>
 	<PackageReference Include="AutoMapper" Version="10.1.1" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1" />
-	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+	<PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1449.0" />
 	<PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.2" />
 	<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
 	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />

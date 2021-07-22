@@ -1,6 +1,6 @@
 ﻿using Barbearia.Interface;
 using Barbearia.Log;
-using Barbearia.Models;
+using Barbersoft.Models;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,8 +13,8 @@ namespace Barbearia.Database
         private readonly Logging log;
         public Databases()
         {
-            barbersoftContext = new BarbersoftContext();
-            log = new Logging();
+            barbersoftContext = new();
+            log = new();
         }
 
         public bool Autenticacao(string login, string senha)
@@ -44,7 +44,44 @@ namespace Barbearia.Database
                 return false;
             }
         }
+        public bool AutenticacaoGestor(string login, string senha)
+        {
+            if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(senha))
+            {
+                try
+                {
+                    var usuario = barbersoftContext.Usuario.FirstOrDefault(u => u.Login == login && u.Senha == senha && u.SuperUser == "S");
 
+                    if (usuario == null)
+                    {
+                        MessageBox.Show("Usuário inexistente");
+                        return false;
+                    }
+                    else if (usuario.Login == login && usuario.Senha != senha)
+                    {
+                        MessageBox.Show("Senha incorreta");
+                        return false;
+                    }
+                    else if (usuario.Login != login && usuario.Senha == senha)
+                    {
+                        MessageBox.Show("Senha incorreta");
+                        return false;
+                    }
+                    Usuario.UsuarioGestorAtivo = usuario;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    log.Log(ex);
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Preencha todos os campos");
+                return false;
+            }
+        }
         public bool ExisteConexao()
         {
             try
@@ -60,8 +97,8 @@ namespace Barbearia.Database
                 }
             } catch (Exception ex)
             {
-                return false;
                 log.Log(ex);
+                return false;
             }
         }        
     }

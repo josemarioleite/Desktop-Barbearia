@@ -1,4 +1,4 @@
-﻿using Barbearia.Models;
+﻿using Barbersoft.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
@@ -13,6 +13,7 @@ namespace Barbearia.Database
         public BarbersoftContext(DbContextOptions<BarbersoftContext> options) : base(options) {}
 
         public virtual DbSet<Atendimento> Atendimento { get; set; }
+        public virtual DbSet<ItemAtendimento> ItemAtendimento { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<EntradaProduto> EntradaProduto { get; set; }
         public virtual DbSet<EstoqueProduto> EstoqueProduto { get; set; }
@@ -20,7 +21,9 @@ namespace Barbearia.Database
         public virtual DbSet<Profissional> Profissional { get; set; }
         public virtual DbSet<Servico> Servico { get; set; }
         public virtual DbSet<Situacao> Situacao { get; set; }
+        public virtual DbSet<FormaPagamento> FormaPagamento { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<ItemFormaPagamento> ItemFormaPagamento { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -56,7 +59,6 @@ namespace Barbearia.Database
 
                 entity.Property(e => e.DeletadoEm).HasColumnType("timestamp");
             });
-
             modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.ToTable("cliente");
@@ -85,12 +87,11 @@ namespace Barbearia.Database
                     .IsRequired()
                     .HasMaxLength(45);
             });
-
             modelBuilder.Entity<EntradaProduto>(entity =>
             {
                 entity.ToTable("entrada_produto");
 
-                entity.HasIndex(e => e.Id_Produto, "Produto_idx");
+                entity.HasIndex(e => e.IdProduto, "Produto_idx");
 
                 entity.Property(e => e.AlteradoEm).HasColumnType("datetime");
 
@@ -109,17 +110,16 @@ namespace Barbearia.Database
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                entity.Property(e => e.Id_Produto).HasColumnName("Id_Produto");
+                entity.Property(e => e.IdProduto).HasColumnName("Id_Produto");
 
                 entity.Property(e => e.Quantidade).HasPrecision(10, 2);
 
                 entity.HasOne(d => d.IdProdutoNavigation)
                     .WithMany(p => p.EntradaProdutos)
-                    .HasForeignKey(d => d.Id_Produto)
+                    .HasForeignKey(d => d.IdProduto)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("Produto");
             });
-
             modelBuilder.Entity<EstoqueProduto>(entity =>
             {
                 entity.ToTable("estoque_produto");
@@ -132,7 +132,6 @@ namespace Barbearia.Database
 
                 entity.Property(e => e.Quantidade).HasPrecision(10, 2);
             });
-
             modelBuilder.Entity<Produto>(entity =>
             {
                 entity.ToTable("produto");
@@ -166,7 +165,6 @@ namespace Barbearia.Database
 
                 entity.Property(e => e.ValorComissaoPorcentagem).HasPrecision(10, 2);
             });
-
             modelBuilder.Entity<Profissional>(entity =>
             {
                 entity.ToTable("profissional");
@@ -194,7 +192,48 @@ namespace Barbearia.Database
 
                 entity.Property(e => e.Porcentagem).HasPrecision(10, 2);
             });
+            modelBuilder.Entity<ItemAtendimento>(entity => 
+            {
+                entity.ToTable("item_atendimento");
 
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.CriadoEm)
+                    .HasColumnType("timestamp")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.Property(e => e.AtualizadoEm).HasColumnType("timestamp");
+                entity.Property(e => e.DeletadoEm).HasColumnType("timestamp");
+            });
+            modelBuilder.Entity<ItemFormaPagamento>(entity =>
+            {
+                entity.ToTable("item_forma_pagamento");
+
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.CriadoEm)
+                    .HasColumnType("timestamp")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.Property(e => e.AtualizadoEm).HasColumnType("timestamp");
+                entity.Property(e => e.DeletadoEm).HasColumnType("timestamp");
+            });
+            modelBuilder.Entity<FormaPagamento>(entity =>
+            {
+                entity.ToTable("forma_pagamento");
+
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.CriadoEm)
+                    .HasColumnType("timestamp")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.Property(e => e.AtualizadoEm).HasColumnType("timestamp");
+                entity.Property(e => e.DeletadoEm).HasColumnType("timestamp");
+            });
             modelBuilder.Entity<Servico>(entity =>
             {
                 entity.ToTable("servico");
@@ -218,7 +257,6 @@ namespace Barbearia.Database
 
                 entity.Property(e => e.Valor).HasPrecision(10, 2);
             });
-
             modelBuilder.Entity<Situacao>(entity =>
             {
                 entity.ToTable("situacao");
@@ -236,7 +274,6 @@ namespace Barbearia.Database
                     .IsRequired()
                     .HasMaxLength(45);
             });
-
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.ToTable("usuario");
@@ -272,10 +309,8 @@ namespace Barbearia.Database
                     .HasMaxLength(1)
                     .HasDefaultValueSql("'S'");
             });
-
             OnModelCreatingPartial(modelBuilder);
         }
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

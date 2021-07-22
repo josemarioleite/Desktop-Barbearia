@@ -45,6 +45,7 @@ namespace Barbearia
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblVersao = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.databaseEnabled)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDisabled)).BeginInit();
             this.panel1.SuspendLayout();
@@ -177,7 +178,7 @@ namespace Barbearia
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(287, 16);
             this.txtLogin.TabIndex = 9;
-            this.txtLogin.Text = "mario";
+            this.txtLogin.Text = "novo";
             // 
             // txtSenha
             // 
@@ -189,14 +190,14 @@ namespace Barbearia
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(287, 16);
             this.txtSenha.TabIndex = 10;
-            this.txtSenha.Text = "josemario";
+            this.txtSenha.Text = "novo";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.label2.Location = new System.Drawing.Point(81, 132);
+            this.label2.Location = new System.Drawing.Point(78, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 11;
@@ -207,11 +208,20 @@ namespace Barbearia
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.label3.Location = new System.Drawing.Point(81, 196);
+            this.label3.Location = new System.Drawing.Point(79, 196);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 12;
             this.label3.Text = "Senha";
+            // 
+            // lblVersao
+            // 
+            this.lblVersao.AutoSize = true;
+            this.lblVersao.Location = new System.Drawing.Point(334, 329);
+            this.lblVersao.Name = "lblVersao";
+            this.lblVersao.Size = new System.Drawing.Size(67, 13);
+            this.lblVersao.TabIndex = 13;
+            this.lblVersao.Text = "Versão 1.0.0";
             // 
             // Login
             // 
@@ -219,6 +229,7 @@ namespace Barbearia
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(413, 362);
+            this.Controls.Add(this.lblVersao);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSenha);
@@ -268,6 +279,7 @@ namespace Barbearia
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblVersao;
     }
 }
 

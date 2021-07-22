@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Barbearia.Models
+namespace Barbersoft.Models
 {
     public partial class Situacao
     {

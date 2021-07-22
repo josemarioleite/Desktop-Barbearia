@@ -1,4 +1,4 @@
-﻿namespace Barbearia.Models
+﻿namespace Barbersoft.Models
 {
     public partial class Usuario
     {
@@ -12,5 +12,6 @@
         public string SuperUser { get; set; }
 
         public static Usuario UsuarioAtivo;
+        public static Usuario UsuarioGestorAtivo;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Barbearia.Database;
 using Barbearia.Log;
-using Barbearia.Models;
+using Barbersoft.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Text.RegularExpressions;
@@ -11,7 +11,7 @@ namespace Barbearia.Views.FormProduto
     public partial class Produto : Form
     {
         private readonly bool modoInclusao = false;
-        private readonly Models.Produto _produto;
+        private readonly Barbersoft.Models.Produto _produto;
         public Produto(bool inclusao)
         {
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace Barbearia.Views.FormProduto
             modoInclusao = inclusao;
             IniciaCampoDefault();
         }
-        public Produto(bool inclusao, Models.Produto produto)
+        public Produto(bool inclusao, Barbersoft.Models.Produto produto)
         {
             InitializeComponent();
 
@@ -33,7 +33,6 @@ namespace Barbearia.Views.FormProduto
         {
             this.Close();
         }
-
         private void TxtKeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
@@ -74,7 +73,6 @@ namespace Barbearia.Views.FormProduto
             txtValorProduto.Text = valorPadrao;
         }
 
-
         // Serve para o dialog de alteração
         private void IniciaCamposPreenchidos()
         {
@@ -107,7 +105,7 @@ namespace Barbearia.Views.FormProduto
                 comissaoPorcentagem = "P";
             }
 
-            Models.Produto produto = new()
+            Barbersoft.Models.Produto produto = new()
             {
                 Nome = txtNome.Text.ToUpper(),
                 ComissaoPorcentagem = comissaoPorcentagem,

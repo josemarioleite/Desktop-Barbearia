@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Barbearia.Database;
 using Barbearia.Log;
 using Barbearia.Models;
+using Barbersoft.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Barbersoft.Views.FormCrud
@@ -11,7 +12,7 @@ namespace Barbersoft.Views.FormCrud
     public partial class ServicoForm : Form
     {
         private readonly bool modoInclusao = false;
-        private readonly Servico _servico;
+        private readonly Barbersoft.Models.Servico _servico;
         public ServicoForm(bool inclusao)
         {
             InitializeComponent();
@@ -19,7 +20,7 @@ namespace Barbersoft.Views.FormCrud
             modoInclusao = inclusao;
             IniciaCampoDefault();
         }
-        public ServicoForm(bool inclusao, Servico servico)
+        public ServicoForm(bool inclusao, Barbersoft.Models.Servico servico)
         {
             InitializeComponent();
 
@@ -78,7 +79,7 @@ namespace Barbersoft.Views.FormCrud
         {
             BarbersoftContext database = new();
             Logging log = new();
-            Servico servico = new()
+            Barbersoft.Models.Servico servico = new()
             {
                 Nome = txtNome.Text.ToUpper(),
                 Valor = decimal.Parse(txtValorServico.Text),

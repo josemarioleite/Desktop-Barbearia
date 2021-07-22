@@ -1,6 +1,6 @@
 ﻿using Barbearia.Database;
 using Barbearia.Log;
-using Barbearia.Models;
+using Barbersoft.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace Barbearia.Views.FormCrud
     public partial class ProfissionalForm : Form
     {
         private readonly bool modoInclusao = false;
-        private readonly Models.Profissional _profissional;
+        private readonly Barbersoft.Models.Profissional _profissional;
         public ProfissionalForm(bool inclusao)
         {
             InitializeComponent();
@@ -20,8 +20,7 @@ namespace Barbearia.Views.FormCrud
             modoInclusao = inclusao;
             IniciaCampoDefault();
         }
-
-        public ProfissionalForm(bool inclusao, Models.Profissional profissional)
+        public ProfissionalForm(bool inclusao, Barbersoft.Models.Profissional profissional)
         {
             InitializeComponent();
 
@@ -30,8 +29,7 @@ namespace Barbearia.Views.FormCrud
 
             IniciaCamposPreenchidos();
         }
-
-        private Models.Profissional ObtemDadosProfissionalPorID(int id)
+        private Barbersoft.Models.Profissional ObtemDadosProfissionalPorID(int id)
         {
             BarbersoftContext database = new();
             return database.Profissional.FirstOrDefault(p => p.Id == id);
@@ -83,21 +81,9 @@ namespace Barbearia.Views.FormCrud
             {
                 txtNome.Text = _profissional.Nome;
                 txtPorcentagem.Text = string.Format("{0:#,##0.00}", _profissional.Porcentagem);
-                txtCPF.Text = Convert.ToUInt64(_profissional.Cpf).ToString(@"000\.000\.000\-00");
-                txtCelularTelefone.Text = AplicarMascaraTelefone(_profissional.Celular);
+                txtCPF.Text = _profissional.Cpf;
+                txtCelularTelefone.Text = _profissional.Celular;
             }
-        }
-        private string AplicarMascaraTelefone(string strNumero)
-        {
-            // por omissão tem 10 ou menos dígitos
-            string strMascara = "{0:(00)0000-0000}";
-            // converter o texto em número
-            long lngNumero = Convert.ToInt64(strNumero);
-
-            if (strNumero.Length == 11)
-                strMascara = "{0:(00)00000-0000}";
-
-            return string.Format(strMascara, lngNumero);
         }
         private void BtnSair(object sender, EventArgs e)
         {
@@ -108,7 +94,7 @@ namespace Barbearia.Views.FormCrud
             BarbersoftContext database = new();
             Logging log = new();
 
-            Models.Profissional profissional = new()
+            Barbersoft.Models.Profissional profissional = new()
             {
                 Nome = txtNome.Text.ToUpper(),
                 Celular = txtCelularTelefone.Text,
