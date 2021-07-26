@@ -31,8 +31,10 @@ namespace Barbearia.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaInicialView));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pcLogo = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button9 = new System.Windows.Forms.Button();
@@ -44,8 +46,10 @@ namespace Barbearia.Views
             this.button10 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcLogo)).BeginInit();
             this.panel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -54,34 +58,52 @@ namespace Barbearia.Views
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(1113, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(233, 681);
             this.panel1.TabIndex = 0;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.pictureBox3);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(233, 60);
+            this.panel4.TabIndex = 6;
+            // 
             // pictureBox3
             // 
             this.pictureBox3.BackgroundImage = global::Barbersoft.Properties.Resources.Logo_Empresa_Barbersoft2;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Location = new System.Drawing.Point(0, 3);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(227, 47);
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBox1
+            // panel2
             // 
-            this.pictureBox1.BackgroundImage = global::Barbersoft.Properties.Resources.brucebarber;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 283);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(224, 126);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
+            this.panel2.Controls.Add(this.pcLogo);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 534);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(233, 147);
+            this.panel2.TabIndex = 5;
+            // 
+            // pcLogo
+            // 
+            this.pcLogo.BackgroundImage = global::Barbersoft.Properties.Resources.brucebarber;
+            this.pcLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pcLogo.Location = new System.Drawing.Point(6, 9);
+            this.pcLogo.Name = "pcLogo";
+            this.pcLogo.Size = new System.Drawing.Size(220, 126);
+            this.pcLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pcLogo.TabIndex = 4;
+            this.pcLogo.TabStop = false;
             // 
             // panel3
             // 
@@ -117,7 +139,7 @@ namespace Barbearia.Views
             this.button9.Location = new System.Drawing.Point(3, 3);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(220, 33);
-            this.button9.TabIndex = 11;
+            this.button9.TabIndex = 36;
             this.button9.Text = "ATENDIMENTO";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button9.UseVisualStyleBackColor = false;
@@ -132,7 +154,7 @@ namespace Barbearia.Views
             this.button1.Location = new System.Drawing.Point(3, 42);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(220, 33);
-            this.button1.TabIndex = 14;
+            this.button1.TabIndex = 39;
             this.button1.Text = "CLIENTE";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
@@ -147,7 +169,7 @@ namespace Barbearia.Views
             this.button11.Location = new System.Drawing.Point(3, 81);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(220, 33);
-            this.button11.TabIndex = 8;
+            this.button11.TabIndex = 33;
             this.button11.Text = "PRODUTO";
             this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button11.UseVisualStyleBackColor = false;
@@ -162,11 +184,10 @@ namespace Barbearia.Views
             this.button8.Location = new System.Drawing.Point(3, 120);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(220, 33);
-            this.button8.TabIndex = 10;
+            this.button8.TabIndex = 35;
             this.button8.Text = "PROFISSIONAL";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.BtnProfissional);
             // 
             // button6
             // 
@@ -177,7 +198,7 @@ namespace Barbearia.Views
             this.button6.Location = new System.Drawing.Point(3, 159);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(220, 33);
-            this.button6.TabIndex = 13;
+            this.button6.TabIndex = 38;
             this.button6.Text = "SERVIÇO";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = false;
@@ -192,7 +213,7 @@ namespace Barbearia.Views
             this.button7.Location = new System.Drawing.Point(3, 198);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(220, 33);
-            this.button7.TabIndex = 9;
+            this.button7.TabIndex = 34;
             this.button7.Text = "COMPRA (Entrada)";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.UseVisualStyleBackColor = false;
@@ -207,7 +228,7 @@ namespace Barbearia.Views
             this.button10.Location = new System.Drawing.Point(3, 237);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(220, 33);
-            this.button10.TabIndex = 12;
+            this.button10.TabIndex = 37;
             this.button10.Text = "SAIR";
             this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button10.UseVisualStyleBackColor = false;
@@ -241,8 +262,10 @@ namespace Barbearia.Views
             this.Load += new System.EventHandler(this.OnLoad);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TelaInicial_KeyDown);
             this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcLogo)).EndInit();
             this.panel3.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -256,14 +279,16 @@ namespace Barbearia.Views
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pcLogo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button1;
     }
 }

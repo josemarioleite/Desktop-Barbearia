@@ -1,6 +1,7 @@
 ﻿using Barbearia.Database;
 using Barbearia.Log;
 using Barbearia.Views;
+using Barbersoft.Enum;
 using Barbersoft.Models;
 using System;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace Barbersoft.Views.FormCrud
                 atendimento.CriadoEm = DateTime.Now;
                 atendimento.CriadoPor = Usuario.UsuarioAtivo.Id;
                 atendimento.Ativo = "S";
-                atendimento.SituacaoId = 2;
+                atendimento.SituacaoId = (int)SituacaoEnum.Aberto;
                 try
                 {
                     if (atendimento.ClienteId > 0 && atendimento.ProfissionalId > 0)
@@ -68,45 +69,7 @@ namespace Barbersoft.Views.FormCrud
                     MessageBox.Show("Não foi possível fazer a inclusão, tente novamente mais tarde");
                     log.Log(ex);
                 }
-            } 
-            //else
-            //{
-            //    Atendimento atendimento = new()
-            //    {
-            //        SituacaoId = (int)cbSituacao.SelectedValue,
-            //        Id = _atendimento.Id,
-            //        Ativo = _atendimento.Ativo,
-            //        CriadoEm = DateTime.Parse(dtData.Text),
-            //        CriadoPor = _atendimento.CriadoPor,
-            //        ClienteId = _atendimento.ClienteId,
-            //        ProfissionalId = _atendimento.ProfissionalId,
-            //        AlteradoPor = Usuario.UsuarioAtivo.Id,
-            //        AlteradoEm = DateTime.Now
-            //     };
-                
-            //    database.Entry(atendimento).State = EntityState.Modified;
-            //    database.Entry(atendimento).Property(p => p.DeletadoEm).IsModified = false;
-            //    database.Entry(atendimento).Property(p => p.DeletadoPor).IsModified = false;
-
-            //    try
-            //    {
-            //        if (atendimento.SituacaoId > 0)
-            //        {
-            //            database.Atendimento.Update(atendimento);
-            //            database.SaveChanges();
-            //            this.Close();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("O Campo Situação devem estar preenchido");
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Não foi possível fazer a alteração, tente novamente mais tarde");
-            //        log.Log(ex);
-            //    }
-            //}
+            }
         }
         private void BtnSair(object sender, EventArgs e)
         {

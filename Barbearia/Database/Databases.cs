@@ -1,6 +1,7 @@
 ﻿using Barbearia.Interface;
 using Barbearia.Log;
 using Barbersoft.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -101,5 +102,25 @@ namespace Barbearia.Database
                 return false;
             }
         }        
+        public bool MudaSituacaoAtendimento(Atendimento atendimento)
+        {
+            try
+            {
+                if (atendimento != null)
+                {
+                    barbersoftContext.Entry(atendimento).State = EntityState.Modified;
+                    barbersoftContext.Atendimento.Update(atendimento);
+                    barbersoftContext.SaveChanges();
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            } catch (Exception ex)
+            {
+                log.Log(ex);
+                return false;
+            }
+        }
     }
 }

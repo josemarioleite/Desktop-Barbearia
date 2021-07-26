@@ -1,5 +1,6 @@
 ﻿using Barbearia.Database;
 using Barbearia.Log;
+using Barbersoft.Enum;
 using Barbersoft.Models;
 using Barbersoft.Models.DTO;
 using Barbersoft.Views.FormCrud;
@@ -53,7 +54,7 @@ namespace Barbersoft.Views
             decimal valorTotal = _database.ItemAtendimento.Where(i => i.AtendimentoId == _atendimento.Id).GroupBy(i => i.ValorTotal).Sum(i => i.Key);
             txtTotal.Text = valorTotal.ToString("N2", CultureInfo.CurrentCulture).Replace("R$", "");
         }
-        private void ItemAtendimento_Load(object sender, System.EventArgs e)
+        private void ItemAtendimento_Load(object sender, EventArgs e)
         {
             RecebeDadosBanco();
             ConfiguraDataGrid();
@@ -105,18 +106,18 @@ namespace Barbersoft.Views
             dgItem.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgItem.EnableHeadersVisualStyles = false;
         }
-        private void BtnSair(object sender, System.EventArgs e)
+        private void BtnSair(object sender, EventArgs e)
         {
             this.Close();
         }
-        private void BtnAdicionar(object sender, System.EventArgs e)
+        private void BtnAdicionar(object sender, EventArgs e)
         {
             BarbersoftContext database = new();
             Atendimento atend = database.Atendimento.FirstOrDefault(a => a.Id == _atendimento.Id);
-            if (atend.SituacaoId == 4)
+            if (atend.SituacaoId == (int)SituacaoEnum.Fechado)
             {
                 MessageBox.Show("Não será possível adicionar novos itens, este atendimento está fechado");
-            } else if (atend.SituacaoId == 5)
+            } else if (atend.SituacaoId == (int)SituacaoEnum.Cancelado)
             {
                 MessageBox.Show("Não será possível adicionar novos itens, este atendimento está cancelado");
             } else

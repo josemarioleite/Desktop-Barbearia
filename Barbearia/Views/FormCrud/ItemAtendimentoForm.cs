@@ -93,17 +93,33 @@ namespace Barbersoft.Views.FormCrud
         private void BtnServico(object sender, EventArgs e)
         {
             decimal quantidade = decimal.Parse(txtQuantidadeServico.Text);
+            decimal valorServico = decimal.Parse(txtValorServico.Text);
             if (string.IsNullOrEmpty(txtQuantidadeServico.Text))
             {
-                MessageBox.Show("Para inserir um item é necessário informar a quantidade correta");
+                MessageBox.Show("Para inserir um item é necessário informar a quantidade correta", "Atenção");
             }
             else if (quantidade < 1)
             {
-                MessageBox.Show("Para inserir um item a quantidade não pode ser zero");
+                MessageBox.Show("Para inserir um item a quantidade não pode ser zero", "Atenção");
+            }
+            else if (valorServico < 1)
+            {
+                MessageBox.Show("Para inserir um item o valor não pode ser zero", "Atenção");
             }
             else
             {
                 Servico servico = (Servico)cbServico.SelectedItem;
+                if (_itens.Count > 0)
+                {
+                    foreach (var dados in _itens)
+                    {
+                        if (dados.Descricao.Equals(servico.Nome))
+                        {
+                            MessageBox.Show("Este item já foi adicionado", "Atenção");
+                            return;
+                        }
+                    }
+                }
                 Item item = new()
                 {
                     AtendimentoId = _atendimento.Id,
@@ -111,8 +127,8 @@ namespace Barbersoft.Views.FormCrud
                     ProdutoServicoId = (int)servico.Id,
                     Quantidade = quantidade,
                     TipoItem = "Serviço",
-                    ValorUnitario = servico.Valor,
-                    ValorTotal = servico.Valor * quantidade
+                    ValorUnitario = valorServico,
+                    ValorTotal = valorServico * quantidade
                 };
                 dgItemAtendimento.Rows.Add(
                     item.AtendimentoId,
@@ -129,6 +145,7 @@ namespace Barbersoft.Views.FormCrud
         private void BtnProduto(object sender, EventArgs e)
         {
             decimal quantidade = decimal.Parse(txtQuantidadeProduto.Text);
+            decimal valorProduto = decimal.Parse(txtValorProduto.Text);
             if (string.IsNullOrEmpty(txtQuantidadeServico.Text))
             {
                 MessageBox.Show("Para inserir um item é necessário informar a quantidade correta");
@@ -137,9 +154,24 @@ namespace Barbersoft.Views.FormCrud
             {
                 MessageBox.Show("Para inserir um item a quantidade não pode ser zero");
             }
+            else if (valorProduto < 1)
+            {
+                MessageBox.Show("Para inserir um item o valor não pode ser zero");
+            }
             else
             {
                 Produto produto = (Produto)cbProduto.SelectedItem;
+                if (_itens.Count > 0)
+                {
+                    foreach (var dados in _itens)
+                    {
+                        if (dados.Descricao.Equals(produto.Nome))
+                        {
+                            MessageBox.Show("Este item já foi adicionado", "Atenção");
+                            return;
+                        }
+                    }
+                }
                 Item item = new()
                 {
                     AtendimentoId = _atendimento.Id,
@@ -147,8 +179,8 @@ namespace Barbersoft.Views.FormCrud
                     ProdutoServicoId = (int)produto.Id,
                     Quantidade = quantidade,
                     TipoItem = "Produto",
-                    ValorUnitario = produto.Valor,
-                    ValorTotal = produto.Valor * quantidade
+                    ValorUnitario = valorProduto,
+                    ValorTotal = valorProduto * quantidade
                 };
                 dgItemAtendimento.Rows.Add(
                     item.AtendimentoId,
@@ -223,6 +255,49 @@ namespace Barbersoft.Views.FormCrud
                 t.Text = string.Format("{0:#.##0.00}", 0d);
                 t.Select(t.Text.Length, 0);
                 e.Handled = true;
+            }
+        }
+        private void ComboboxServicoSelecionado(object sender, EventArgs e)
+        {
+            if (cbServico.SelectedItem != null)
+            {
+                Servico servico = (Servico)cbServico.SelectedItem;
+                txtValorServico.Text = servico.Valor.ToString();
+                txtQuantidadeServico.Text = "0,00";
+            }            
+        }
+        private void ComboboxProdutoSelecionado(object sender, EventArgs e)
+        {
+            if (cbProduto.SelectedItem != null)
+            {
+                Produto produto = (Produto)cbProduto.SelectedItem;
+                txtValorProduto.Text = produto.Valor.ToString();
+                txtQuantidadeProduto.Text = "0,00";
+            }
+        }
+        private void DataGridKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                if (dgItemAtendimento.Rows.Count > 0)
+                {
+                    Logging log = new();
+                    try
+                    {
+                        if (dgItemAtendimento.Rows[0].Cells[0].Value != null)
+                        {
+                            int id = (int)dgItemAtendimento.CurrentRow.Index;
+                            dgItemAtendimento.Rows.RemoveAt(id);
+                        } else
+                        {
+                            MessageBox.Show("Não há nenhum item", "Aviso");
+                        }
+                    } catch (Exception ex)
+                    {
+                        log.Log(ex);
+                        MessageBox.Show("Não foi possível deletar linha", "Atenção");
+                    }
+                }
             }
         }
     }

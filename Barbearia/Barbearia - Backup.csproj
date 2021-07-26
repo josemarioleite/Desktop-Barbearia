@@ -8,7 +8,6 @@
     <RootNamespace>Barbersoft</RootNamespace>
     <AssemblyName>Barbersoft</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <ReferencePath>C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\</ReferencePath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -26,21 +25,10 @@
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
 	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+	<PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1449.0" />
  	<PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.2" />
 	<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
 	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="CrystalDecisions.ReportSource">
-      <HintPath>..\..\..\..\Videos\CrystalDecisions.ReportSource.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Shared">
-      <HintPath>..\..\..\..\Videos\CrystalDecisions.Shared.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.Windows.Forms">
-      <HintPath>..\..\..\..\..\mario\Pictures\CrystalDecisions.Windows.Forms\CrystalDecisions.Windows.Forms.dll</HintPath>
-    </Reference>
   </ItemGroup>
   
   <ItemGroup>
@@ -56,10 +44,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Service Include="{c0c07587-41a7-46c8-8fbd-3f9c8ebe2ddc}" />
   </ItemGroup>
 
 </Project>

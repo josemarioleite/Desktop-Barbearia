@@ -49,6 +49,10 @@ namespace Barbersoft.Views.FormCrud
             this.txtQuantidadeServico = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtValorServico = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtValorProduto = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgItemAtendimento)).BeginInit();
@@ -144,6 +148,7 @@ namespace Barbersoft.Views.FormCrud
             this.dgItemAtendimento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgItemAtendimento.Size = new System.Drawing.Size(803, 253);
             this.dgItemAtendimento.TabIndex = 19;
+            this.dgItemAtendimento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridKeyDown);
             // 
             // cbServico
             // 
@@ -152,8 +157,9 @@ namespace Barbersoft.Views.FormCrud
             this.cbServico.FormattingEnabled = true;
             this.cbServico.Location = new System.Drawing.Point(13, 100);
             this.cbServico.Name = "cbServico";
-            this.cbServico.Size = new System.Drawing.Size(229, 23);
+            this.cbServico.Size = new System.Drawing.Size(176, 23);
             this.cbServico.TabIndex = 34;
+            this.cbServico.SelectedValueChanged += new System.EventHandler(this.ComboboxServicoSelecionado);
             // 
             // label2
             // 
@@ -180,8 +186,9 @@ namespace Barbersoft.Views.FormCrud
             this.cbProduto.FormattingEnabled = true;
             this.cbProduto.Location = new System.Drawing.Point(421, 100);
             this.cbProduto.Name = "cbProduto";
-            this.cbProduto.Size = new System.Drawing.Size(232, 23);
+            this.cbProduto.Size = new System.Drawing.Size(180, 23);
             this.cbProduto.TabIndex = 37;
+            this.cbProduto.SelectedValueChanged += new System.EventHandler(this.ComboboxProdutoSelecionado);
             // 
             // Produto
             // 
@@ -231,9 +238,9 @@ namespace Barbersoft.Views.FormCrud
             // 
             this.txtQuantidadeProduto.BackColor = System.Drawing.Color.White;
             this.txtQuantidadeProduto.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtQuantidadeProduto.Location = new System.Drawing.Point(659, 100);
+            this.txtQuantidadeProduto.Location = new System.Drawing.Point(607, 100);
             this.txtQuantidadeProduto.Name = "txtQuantidadeProduto";
-            this.txtQuantidadeProduto.Size = new System.Drawing.Size(94, 23);
+            this.txtQuantidadeProduto.Size = new System.Drawing.Size(69, 23);
             this.txtQuantidadeProduto.TabIndex = 40;
             this.txtQuantidadeProduto.Text = "0,00";
             this.txtQuantidadeProduto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -244,9 +251,9 @@ namespace Barbersoft.Views.FormCrud
             // 
             this.txtQuantidadeServico.BackColor = System.Drawing.Color.White;
             this.txtQuantidadeServico.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtQuantidadeServico.Location = new System.Drawing.Point(248, 100);
+            this.txtQuantidadeServico.Location = new System.Drawing.Point(195, 100);
             this.txtQuantidadeServico.Name = "txtQuantidadeServico";
-            this.txtQuantidadeServico.Size = new System.Drawing.Size(103, 23);
+            this.txtQuantidadeServico.Size = new System.Drawing.Size(67, 23);
             this.txtQuantidadeServico.TabIndex = 41;
             this.txtQuantidadeServico.Text = "0,00";
             this.txtQuantidadeServico.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -257,7 +264,7 @@ namespace Barbersoft.Views.FormCrud
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.label4.Location = new System.Drawing.Point(688, 80);
+            this.label4.Location = new System.Drawing.Point(609, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 15);
             this.label4.TabIndex = 43;
@@ -267,11 +274,55 @@ namespace Barbersoft.Views.FormCrud
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.label3.Location = new System.Drawing.Point(286, 80);
+            this.label3.Location = new System.Drawing.Point(197, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 15);
             this.label3.TabIndex = 44;
             this.label3.Text = "Quantidade";
+            // 
+            // txtValorServico
+            // 
+            this.txtValorServico.BackColor = System.Drawing.Color.White;
+            this.txtValorServico.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtValorServico.Location = new System.Drawing.Point(268, 100);
+            this.txtValorServico.Name = "txtValorServico";
+            this.txtValorServico.Size = new System.Drawing.Size(83, 23);
+            this.txtValorServico.TabIndex = 45;
+            this.txtValorServico.Text = "0,00";
+            this.txtValorServico.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtValorServico.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtKeyDown);
+            this.txtValorServico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtKeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.label5.Location = new System.Drawing.Point(320, 80);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 15);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "Valor";
+            // 
+            // txtValorProduto
+            // 
+            this.txtValorProduto.BackColor = System.Drawing.Color.White;
+            this.txtValorProduto.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtValorProduto.Location = new System.Drawing.Point(682, 100);
+            this.txtValorProduto.Name = "txtValorProduto";
+            this.txtValorProduto.Size = new System.Drawing.Size(71, 23);
+            this.txtValorProduto.TabIndex = 47;
+            this.txtValorProduto.Text = "0,00";
+            this.txtValorProduto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.label6.Location = new System.Drawing.Point(722, 80);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 15);
+            this.label6.TabIndex = 48;
+            this.label6.Text = "Valor";
             // 
             // ItemAtendimentoForm
             // 
@@ -279,6 +330,10 @@ namespace Barbersoft.Views.FormCrud
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(803, 463);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtValorProduto);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtValorServico);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtQuantidadeServico);
@@ -297,6 +352,8 @@ namespace Barbersoft.Views.FormCrud
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ItemAtendimentoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Item de Atendimento";
@@ -331,5 +388,9 @@ namespace Barbersoft.Views.FormCrud
         private System.Windows.Forms.TextBox txtQuantidadeServico;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtValorServico;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtValorProduto;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Barbearia.Database;
 using Barbearia.Log;
+using Barbersoft.Enum;
 using Barbersoft.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -99,7 +100,7 @@ namespace Barbersoft.Views.FormCrud
                             CriadoEm = _atendimento.CriadoEm,
                             CriadoPor = _atendimento.CriadoPor,
                             Ativo = _atendimento.Ativo,
-                            SituacaoId = 4,
+                            SituacaoId = (int)SituacaoEnum.Fechado,
                             AlteradoEm = DateTime.Now,
                             AlteradoPor = Usuario.UsuarioAtivo.Id
                         };

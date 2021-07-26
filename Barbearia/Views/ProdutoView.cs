@@ -65,12 +65,12 @@ namespace Barbearia.Views
             dgProduto.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgProduto.EnableHeadersVisualStyles = false;
         }
-        private void FormProdutoLoad(object sender, System.EventArgs e)
+        private void FormProdutoLoad(object sender, EventArgs e)
         {
             RecebeDadosBanco();
             ConfiguraDataGrid();
         }
-        private void BtnExcluir(object sender, System.EventArgs e)
+        private void BtnExcluir(object sender, EventArgs e)
         {
             if (dgProduto.Rows.Count > 0)
             {

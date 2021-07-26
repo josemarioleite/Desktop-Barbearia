@@ -1,5 +1,6 @@
 ﻿using Barbearia.Database;
 using Barbearia.Log;
+using Barbersoft.Enum;
 using Barbersoft.Models;
 using Barbersoft.Models.DTO;
 using Barbersoft.Views.FormCrud;
@@ -357,6 +358,7 @@ namespace Barbersoft.Views
                 string situacao = (string)dgAtendimento.SelectedRows[0].Cells[5].Value;
                 int id = (int)dgAtendimento.SelectedRows[0].Cells[1].Value;
                 var query = barbersoftContext.ItemAtendimento.Where(i => i.AtendimentoId == id).ToList();
+                var atendimento = barbersoftContext.Atendimento.FirstOrDefault(a => a.Id == id);
                 if (situacao.ToLower().Equals("cancelado"))
                 {
                     MessageBox.Show("Este atendimento já está cancelado", "Atenção");
@@ -368,19 +370,33 @@ namespace Barbersoft.Views
                 else
                 {
                     Logging log = new();
+                    Databases database = new();
+                    Atendimento atendCancelado = new()
+                    {
+                        Id = atendimento.Id,
+                        SituacaoId = (int)SituacaoEnum.Cancelado,
+                        Ativo = atendimento.Ativo,
+                        CriadoEm = atendimento.CriadoEm,
+                        CriadoPor = atendimento.CriadoPor,
+                        ClienteId = atendimento.ClienteId,
+                        ProfissionalId = atendimento.ProfissionalId,
+                        AlteradoPor = atendimento.AlteradoPor,
+                        AlteradoEm = atendimento.AlteradoEm,
+                        DeletadoEm = DateTime.Now,
+                        DeletadoPor = Usuario.UsuarioAtivo.Id
+                    };
                     if (query.Count > 0)
                     {
                         DialogResult dialog = MessageBox.Show("Este atendimento contém itens adicionados, deseja continuar com o cancelamento ?", "Atenção", MessageBoxButtons.YesNo);
                         if (dialog == DialogResult.Yes)
                         {
-                            try
+                            bool mudaSituacao = database.MudaSituacaoAtendimento(atendCancelado);
+                            if (mudaSituacao)
                             {
-                                barbersoftContext.Atendimento.FromSqlRaw($"Update Atendimento set SituacaoId = 5 Where Id = {id}");
+                                MessageBox.Show("Atendimento Cancelado!", "Aviso");
                                 RecebeDadosBanco();
-                            }
-                            catch (Exception ex)
+                            } else
                             {
-                                log.Log(ex);
                                 MessageBox.Show("Não foi possível fazer o cancelamento", "Atenção");
                             }
                         }
@@ -390,14 +406,14 @@ namespace Barbersoft.Views
                         DialogResult dialog = MessageBox.Show("Deseja realmente cancelar este atendimento ?", "Atenção", MessageBoxButtons.YesNo);
                         if (dialog == DialogResult.Yes)
                         {
-                            try
+                            bool mudaSituacao = database.MudaSituacaoAtendimento(atendCancelado);
+                            if (mudaSituacao)
                             {
-                                barbersoftContext.Atendimento.FromSqlRaw($"Update Atendimento set SituacaoId = 5 Where Id = {id}");
+                                MessageBox.Show("Atendimento Cancelado!", "Aviso");
                                 RecebeDadosBanco();
                             }
-                            catch (Exception ex)
+                            else
                             {
-                                log.Log(ex);
                                 MessageBox.Show("Não foi possível fazer o cancelamento", "Atenção");
                             }
                         }
