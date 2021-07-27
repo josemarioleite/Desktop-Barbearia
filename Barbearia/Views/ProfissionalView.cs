@@ -29,7 +29,7 @@ namespace Barbearia.Views
                     Cpf = p.Cpf,
                     Celular = p.Celular,
                     Porcentagem = p.Porcentagem
-                }).ToList();
+                }).OrderByDescending(p => p.Id).ToList();
             } catch (Exception ex)
             {
                 MessageBox.Show("Erro ao Obter Profissionais, tente novamente depois");

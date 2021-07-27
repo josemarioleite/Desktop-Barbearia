@@ -26,7 +26,7 @@ namespace Barbearia.Views
                 Id = p.Id,
                 Nome = p.Nome,
                 Valor = p.Valor,
-            }).ToList();
+            }).OrderByDescending(s => s.Id).ToList();
         }
         public void ConfiguraDataGrid()
         {

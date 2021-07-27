@@ -195,6 +195,17 @@ namespace Barbersoft.Views.FormCrud
             else
             {
                 FormaPagamento formaPagamento = (FormaPagamento)cbFormaPagamento.SelectedItem;
+                if (_pagamentoItem.Count > 0)
+                {
+                    foreach (var dados in _pagamentoItem)
+                    {
+                        if (dados.Descricao.Equals(formaPagamento.Descricao))
+                        {
+                            MessageBox.Show("Esta forma de pagamento já foi adicionado", "Atenção");
+                            return;
+                        }
+                    }
+                }
                 PagamentoItem item = new()
                 {
                     AtendimentoId = _atendimento.Id,
@@ -213,6 +224,33 @@ namespace Barbersoft.Views.FormCrud
                 lblTotal.Text = "Total: R$ " + valorTotalGrid.ToString();
                 _pagamentoItem.Add(item);
                 CarregaDados();
+            }
+        }
+        private void DataGridKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                if (dgFormaPagamento.Rows.Count > 0)
+                {
+                    Logging log = new();
+                    try
+                    {
+                        if (dgFormaPagamento.Rows[0].Cells[0].Value != null)
+                        {
+                            int id = dgFormaPagamento.CurrentRow.Index;
+                            dgFormaPagamento.Rows.RemoveAt(id);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Não há nenhum item", "Aviso");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        log.Log(ex);
+                        MessageBox.Show("Não foi possível deletar linha", "Atenção");
+                    }
+                }
             }
         }
     }

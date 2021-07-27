@@ -169,6 +169,7 @@ namespace Barbersoft.Views.FormCrud
             this.dgFormaPagamento.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgFormaPagamento.Size = new System.Drawing.Size(685, 148);
             this.dgFormaPagamento.TabIndex = 29;
+            this.dgFormaPagamento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridKeyDown);
             // 
             // panel2
             // 

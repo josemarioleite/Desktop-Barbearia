@@ -32,7 +32,7 @@ namespace Barbersoft.Views
                                      Produto = b.Nome,
                                      Quantidade = a.Quantidade,
                                      Data = a.Data
-                                 }).ToList();
+                                 }).OrderByDescending(e => e.Id).ToList();
 
             dgEntradaProduto.DataSource = entradaProduto;
         }

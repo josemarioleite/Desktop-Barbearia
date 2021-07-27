@@ -1,4 +1,5 @@
 ﻿using Barbersoft.Gestor;
+using Barbersoft.Models;
 using Barbersoft.Views;
 using System;
 using System.Windows.Forms;
@@ -66,6 +67,8 @@ namespace Barbearia.Views
         private void OnLoad(object sender, EventArgs e)
         {
             this.KeyPreview = true;
+            lblNomeUsuario.Text = Usuario.UsuarioAtivo.Nome;
+            lblVersao.Text = Sistema.Versao;
         }
     }
 }

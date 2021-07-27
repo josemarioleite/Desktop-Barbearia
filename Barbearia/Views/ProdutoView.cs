@@ -31,7 +31,7 @@ namespace Barbearia.Views
                 Valor = p.Valor,
                 ComissaoPorcentagem = (p.ComissaoPorcentagem == "C" ? "Comissão" : "Porcentagem"),
                 ValorComissaoPorcentagem = p.ValorComissaoPorcentagem
-            }).ToList();
+            }).OrderByDescending(p => p.Id).ToList();
         }
         private Produto ObtemDadosProdutoPorID(int id)
         {

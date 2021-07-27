@@ -27,7 +27,7 @@ namespace Barbersoft.Views
                 Id = p.Id,
                 Nome = p.Nome,
                 Celular = p.Celular
-            }).ToList();
+            }).OrderByDescending(c => c.Id).ToList();
         }
         public void ConfiguraDataGrid()
         {

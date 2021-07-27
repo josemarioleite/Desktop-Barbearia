@@ -27,6 +27,7 @@
 	</PackageReference>
 	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
  	<PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.2" />
+ 	<PackageReference Include="PdfiumViewer" Version="2.13.0" />
 	<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
 	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
   </ItemGroup>

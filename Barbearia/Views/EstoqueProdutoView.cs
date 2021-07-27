@@ -34,7 +34,7 @@ namespace Barbersoft.Views
                                                                           Produto = b.Nome,
                                                                           Quantidade = a.Quantidade,
                                                                           DataAtualizacao = a.DataAtualizacao
-                                                                      }).ToList();
+                                                                      }).OrderByDescending(e => e.Id).ToList();
             dgEstoqueProduto.DataSource = estoqueProduto;
         }
         public void ConfiguraDataGrid()

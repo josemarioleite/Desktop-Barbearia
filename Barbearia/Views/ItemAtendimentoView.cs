@@ -37,7 +37,7 @@ namespace Barbersoft.Views
                                 ValorUnitario = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.ValorUnitario)).Replace("R$", "R$ "),
                                 ValorTotal = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.ValorTotal)).Replace("R$", "R$ "),
                                 Descricao = ""
-                            }).ToList();
+                            }).OrderByDescending(i => i.Id).ToList();
             foreach (var item in itemAtendimento)
             {
                 if (item.TipoItem == "Produto")

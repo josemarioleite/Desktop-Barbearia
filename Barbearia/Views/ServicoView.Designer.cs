@@ -155,12 +155,13 @@ namespace Barbearia.Views
             this.dgServico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgServico.Location = new System.Drawing.Point(0, 74);
             this.dgServico.Name = "dgServico";
+            this.dgServico.ReadOnly = true;
             this.dgServico.RowTemplate.Height = 25;
             this.dgServico.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgServico.Size = new System.Drawing.Size(591, 418);
             this.dgServico.TabIndex = 2;
             // 
-            // Servico
+            // ServicoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -172,7 +173,7 @@ namespace Barbearia.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Servico";
+            this.Name = "ServicoView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Serviço";
             this.Load += new System.EventHandler(this.ServicoLoad);

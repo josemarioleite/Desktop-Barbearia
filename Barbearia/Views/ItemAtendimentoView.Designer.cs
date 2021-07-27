@@ -37,6 +37,9 @@ namespace Barbersoft.Views
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtadd = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.dgItem = new System.Windows.Forms.DataGridView();
             this.button5 = new System.Windows.Forms.Button();
             this.txtSituacao = new System.Windows.Forms.TextBox();
@@ -52,9 +55,6 @@ namespace Barbersoft.Views
             this.txtIDAtendimento = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtTotal = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -160,6 +160,36 @@ namespace Barbersoft.Views
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(886, 405);
             this.panel2.TabIndex = 2;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.BackColor = System.Drawing.Color.White;
+            this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotal.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtTotal.Location = new System.Drawing.Point(756, 47);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(118, 16);
+            this.txtTotal.TabIndex = 34;
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.label2.Location = new System.Drawing.Point(845, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 15);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Total";
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.panel8.Location = new System.Drawing.Point(756, 69);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(118, 1);
+            this.panel8.TabIndex = 32;
             // 
             // dgItem
             // 
@@ -317,36 +347,6 @@ namespace Barbersoft.Views
             this.panel3.Size = new System.Drawing.Size(103, 1);
             this.panel3.TabIndex = 18;
             // 
-            // txtTotal
-            // 
-            this.txtTotal.BackColor = System.Drawing.Color.White;
-            this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotal.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTotal.Location = new System.Drawing.Point(756, 47);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(118, 16);
-            this.txtTotal.TabIndex = 34;
-            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.label2.Location = new System.Drawing.Point(845, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 15);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Total";
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.panel8.Location = new System.Drawing.Point(756, 69);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(118, 1);
-            this.panel8.TabIndex = 32;
-            // 
             // ItemAtendimentoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -356,6 +356,7 @@ namespace Barbersoft.Views
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "ItemAtendimentoView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Itens do Atendimento";

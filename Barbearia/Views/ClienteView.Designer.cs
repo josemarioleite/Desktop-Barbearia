@@ -154,12 +154,13 @@ namespace Barbersoft.Views
             this.dgCliente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgCliente.Location = new System.Drawing.Point(0, 74);
             this.dgCliente.Name = "dgCliente";
+            this.dgCliente.ReadOnly = true;
             this.dgCliente.RowTemplate.Height = 25;
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCliente.Size = new System.Drawing.Size(591, 418);
             this.dgCliente.TabIndex = 3;
             // 
-            // Cliente
+            // ClienteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -170,7 +171,7 @@ namespace Barbersoft.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Cliente";
+            this.Name = "ClienteView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente";
             this.Load += new System.EventHandler(this.ClienteLoad);
