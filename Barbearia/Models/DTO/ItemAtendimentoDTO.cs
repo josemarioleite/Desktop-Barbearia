@@ -2,7 +2,7 @@
 {
     public class ItemAtendimentoDTO
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string TipoItem { get; set; }
         public int ProdutoServicoId { get; set; }
         public string Descricao { get; set; }

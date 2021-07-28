@@ -45,10 +45,10 @@ namespace Barbersoft.PdfViewer
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(107, 3);
+            this.button1.Location = new System.Drawing.Point(106, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
+            this.button1.TabIndex = 4;
             this.button1.Text = "Abrir Arquivo";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnAbrirArquivo);
@@ -61,9 +61,11 @@ namespace Barbersoft.PdfViewer
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pdfViewer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
             this.Name = "PDFViewerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Visualizar";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }

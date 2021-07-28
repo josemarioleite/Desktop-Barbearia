@@ -26,18 +26,18 @@ namespace Barbersoft.Views
         }
         private void RecebeDadosBanco()
         {
-            List<ItemAtendimentoDTO> itemAtendimento = 
-                            _database.ItemAtendimento.Where(i => i.AtendimentoId == _atendimento.Id).Select(i => new ItemAtendimentoDTO()
-                            {
-                                IdInteiro = i.Id,
-                                Id = i.Id.ToString("D4"),
-                                ProdutoServicoId = i.ProdutoServicoId,
-                                Quantidade = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.Quantidade)).Replace("R$", ""),
-                                TipoItem = (i.TipoItem == "P" ? "Produto" : "Serviço"),
-                                ValorUnitario = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.ValorUnitario)).Replace("R$", "R$ "),
-                                ValorTotal = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.ValorTotal)).Replace("R$", "R$ "),
-                                Descricao = ""
-                            }).OrderByDescending(i => i.Id).ToList();
+            List<ItemAtendimentoDTO> itemAtendimento = _database.ItemAtendimento.Where(i => i.AtendimentoId == _atendimento.Id).Select(i => new ItemAtendimentoDTO()
+            {
+                IdInteiro = i.Id,
+                Id = i.Id,
+                ProdutoServicoId = i.ProdutoServicoId,
+                Quantidade = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.Quantidade)).Replace("R$", ""),
+                TipoItem = (i.TipoItem == "P" ? "Produto" : "Serviço"),
+                ValorUnitario = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.ValorUnitario)).Replace("R$", "R$ "),
+                ValorTotal = (String.Format(new CultureInfo("pt-BR"), "{0:C}", i.ValorTotal)).Replace("R$", "R$ "),
+                Descricao = ""
+            }).OrderByDescending(i => i.Id).ToList();
+
             foreach (var item in itemAtendimento)
             {
                 if (item.TipoItem == "Produto")

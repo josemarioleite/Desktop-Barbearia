@@ -133,6 +133,16 @@ namespace Barbersoft.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Collapse_Arrow_20px {
+            get {
+                object obj = ResourceManager.GetObject("Collapse Arrow_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap databaseDisable {
             get {
                 object obj = ResourceManager.GetObject("databaseDisable", resourceCulture);
@@ -176,6 +186,16 @@ namespace Barbersoft.Properties {
         internal static System.Drawing.Bitmap exit1 {
             get {
                 object obj = ResourceManager.GetObject("exit1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Expand_Arrow_20px {
+            get {
+                object obj = ResourceManager.GetObject("Expand Arrow_20px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

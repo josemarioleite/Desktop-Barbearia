@@ -1,6 +1,7 @@
 ﻿using Barbersoft.Gestor;
 using Barbersoft.Models;
 using Barbersoft.PdfViewer;
+using Barbersoft.Properties;
 using Barbersoft.Views;
 using System;
 using System.Windows.Forms;
@@ -9,6 +10,7 @@ namespace Barbearia.Views
 {
     public partial class TelaInicialView : Form
     {
+        private bool isCollapsed;
         public TelaInicialView()
         {
             InitializeComponent();
@@ -75,6 +77,30 @@ namespace Barbearia.Views
         {
             PDFViewerForm pdf = new();
             pdf.ShowDialog();
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsed)
+            {
+                panelDropDown.Height += 10;
+                if (panelDropDown.Size == panelDropDown.MaximumSize)
+                {
+                    timer1.Stop();
+                    isCollapsed = false;
+                }
+            } else
+            {
+                panelDropDown.Height -= 10;
+                if (panelDropDown.Size == panelDropDown.MinimumSize)
+                {
+                    timer1.Stop();
+                    isCollapsed = true;
+                }
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
         }
     }
 }
