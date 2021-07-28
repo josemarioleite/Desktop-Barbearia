@@ -12,4 +12,13 @@ namespace Barbersoft.Models.DTO
         public string Situacao { get; set; }
         public string Total { get; set; }
     }
+
+    public class AtendimentoFiltro
+    {
+        public int Id { get; set; }
+        public DateTime Data { get; set; }
+        public string Cliente { get; set; }
+        public string Profissional { get; set; }
+        public string Situacao { get; set; }
+    }
 }

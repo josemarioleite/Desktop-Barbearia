@@ -33,11 +33,12 @@ namespace Barbearia.Views
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button9 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.BtnViewer = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -79,11 +80,12 @@ namespace Barbearia.Views
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flowLayoutPanel1.Controls.Add(this.button9);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button11);
             this.flowLayoutPanel1.Controls.Add(this.button8);
-            this.flowLayoutPanel1.Controls.Add(this.button6);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.button7);
+            this.flowLayoutPanel1.Controls.Add(this.button6);
+            this.flowLayoutPanel1.Controls.Add(this.button11);
+            this.flowLayoutPanel1.Controls.Add(this.BtnViewer);
             this.flowLayoutPanel1.Controls.Add(this.button10);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -106,13 +108,28 @@ namespace Barbearia.Views
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.BtnAtendimento);
             // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button8.ForeColor = System.Drawing.Color.White;
+            this.button8.Location = new System.Drawing.Point(3, 42);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(204, 33);
+            this.button8.TabIndex = 35;
+            this.button8.Text = "PROFISSIONAL";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.BtnProfissional);
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(3, 42);
+            this.button1.Location = new System.Drawing.Point(3, 81);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(204, 33);
             this.button1.TabIndex = 39;
@@ -121,35 +138,20 @@ namespace Barbearia.Views
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.BtnCliente);
             // 
-            // button11
+            // button7
             // 
-            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(3, 81);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(204, 33);
-            this.button11.TabIndex = 33;
-            this.button11.Text = "PRODUTO";
-            this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.BtnProduto);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(3, 120);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(204, 33);
-            this.button8.TabIndex = 35;
-            this.button8.Text = "PROFISSIONAL";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.BtnProfissional);
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(3, 120);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(204, 33);
+            this.button7.TabIndex = 34;
+            this.button7.Text = "COMPRA (Entrada)";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.BtnEntradaProduto);
             // 
             // button6
             // 
@@ -166,20 +168,35 @@ namespace Barbearia.Views
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.BtnServico);
             // 
-            // button7
+            // button11
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(3, 198);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(204, 33);
-            this.button7.TabIndex = 34;
-            this.button7.Text = "COMPRA (Entrada)";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.BtnEntradaProduto);
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button11.ForeColor = System.Drawing.Color.White;
+            this.button11.Location = new System.Drawing.Point(3, 198);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(204, 33);
+            this.button11.TabIndex = 33;
+            this.button11.Text = "PRODUTO";
+            this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.BtnProduto);
+            // 
+            // BtnViewer
+            // 
+            this.BtnViewer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.BtnViewer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnViewer.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnViewer.ForeColor = System.Drawing.Color.White;
+            this.BtnViewer.Location = new System.Drawing.Point(3, 237);
+            this.BtnViewer.Name = "BtnViewer";
+            this.BtnViewer.Size = new System.Drawing.Size(204, 33);
+            this.BtnViewer.TabIndex = 41;
+            this.BtnViewer.Text = "ARQUIVO";
+            this.BtnViewer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnViewer.UseVisualStyleBackColor = false;
+            this.BtnViewer.Click += new System.EventHandler(this.BtnArquivo);
             // 
             // button10
             // 
@@ -187,7 +204,7 @@ namespace Barbearia.Views
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(3, 237);
+            this.button10.Location = new System.Drawing.Point(3, 276);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(204, 33);
             this.button10.TabIndex = 37;
@@ -360,5 +377,6 @@ namespace Barbearia.Views
         private System.Windows.Forms.Label lblNomeUsuario;
         private System.Windows.Forms.Label lblVersao;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button BtnViewer;
     }
 }

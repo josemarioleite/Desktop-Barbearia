@@ -1,5 +1,6 @@
 ﻿using Barbersoft.Gestor;
 using Barbersoft.Models;
+using Barbersoft.PdfViewer;
 using Barbersoft.Views;
 using System;
 using System.Windows.Forms;
@@ -69,6 +70,11 @@ namespace Barbearia.Views
             this.KeyPreview = true;
             lblNomeUsuario.Text = Usuario.UsuarioAtivo.Nome;
             lblVersao.Text = Sistema.Versao;
+        }
+        private void BtnArquivo(object sender, EventArgs e)
+        {
+            PDFViewerForm pdf = new();
+            pdf.ShowDialog();
         }
     }
 }
