@@ -8,21 +8,23 @@ using System.Linq;
 using System.Windows.Forms;
 using Barbearia.Log;
 using Barbersoft.Views.FormCrud;
+using Barbersoft.Utils;
+using Barbersoft.Models;
 
 namespace Barbersoft.Views
 {
     public partial class ClienteView : Form
     {
-        private readonly BarbersoftContext barbersoftContext;
+        private readonly ObterDadosGenericos dados;
         public ClienteView()
         {
             InitializeComponent();
 
-            barbersoftContext = new();
+            dados = new();
         }
         private void RecebeDadosBanco()
         {
-            dgCliente.DataSource = barbersoftContext.Cliente.AsNoTracking().Select(p => new ClienteDTO()
+            dgCliente.DataSource = dados.ObterDados<Cliente>().Select(p => new ClienteDTO()
             {
                 Id = p.Id,
                 Nome = p.Nome,
@@ -33,7 +35,6 @@ namespace Barbersoft.Views
         {
             dgCliente.Columns[0].Width = 52;
             dgCliente.Columns[1].Width = 360;
-            //dgCliente.Columns[2].Width = 115;
             dgCliente.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgCliente.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
 
@@ -48,36 +49,19 @@ namespace Barbersoft.Views
             dgCliente.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgCliente.EnableHeadersVisualStyles = false;
         }
-        private void ClienteLoad(object sender, System.EventArgs e)
+        private void ClienteLoad(object sender, EventArgs e)
         {
             RecebeDadosBanco();
             ConfiguraDataGrid();
         }
-        private dynamic ObtemDadosClientePorID(int id)
-        {
-            return barbersoftContext.Cliente.FirstOrDefault(p => p.Id == id);
-        }
-        private void BtnExcluir(object sender, System.EventArgs e)
+        private void BtnExcluir(object sender, EventArgs e)
         {
             if (dgCliente.Rows.Count > 0)
             {
-                Logging log = new();
                 int id = (int)dgCliente.SelectedRows[0].Cells[0].Value;
-                var cliente = ObtemDadosClientePorID(id);
-                DialogResult dialogResult = MessageBox.Show($"Deseja excluir o Cliente: {cliente.Nome} ?", "Atenção", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    try
-                    {
-                        barbersoftContext.Cliente.Remove(cliente);
-                        barbersoftContext.SaveChanges();
-                        RecebeDadosBanco();
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Log(ex);
-                    }
-                }
+                Cliente cliente = dados.ObterDados<Cliente>().FirstOrDefault(c => c.Id == id);
+                dados.RemoveDados(cliente);
+                RecebeDadosBanco();
             }
             else
             {
@@ -89,7 +73,7 @@ namespace Barbersoft.Views
             if (dgCliente.Rows.Count > 0)
             {
                 int id = (int)dgCliente.SelectedRows[0].Cells[0].Value;
-                var cliente = ObtemDadosClientePorID(id);
+                var cliente = dados.ObterDados<Cliente>().FirstOrDefault(c => c.Id == id);
                 ClienteForm clienteForm = new(false, cliente);
                 clienteForm.ShowDialog();
                 RecebeDadosBanco();

@@ -2,6 +2,7 @@
 using Barbearia.Log;
 using Barbersoft.Enum;
 using Barbersoft.Models;
+using Barbersoft.Utils;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Barbersoft.Views.FormCrud
 {
     public partial class Atendimento_FormaPagamentoForm : Form
     {
-        private readonly BarbersoftContext database;
+        private readonly ObterDadosGenericos dados;
         private readonly Atendimento _atendimento;
         private readonly List<PagamentoItem> _pagamentoItem;
         private decimal valorTotalGrid;
@@ -23,19 +24,19 @@ namespace Barbersoft.Views.FormCrud
         {
             InitializeComponent();
 
-            database = new();
+            dados = new();
             _pagamentoItem = new();
-            _atendimento = database.Atendimento.FirstOrDefault(a => a.Id == id);
+            _atendimento = dados.ObterDados<Atendimento>().FirstOrDefault(a => a.Id == id);
         }
         private void CarregaDados()
         {
             txtValor.Text = "0";
 
-            valorTotalAtendimentoGrade = database.ItemAtendimento.Where(i => i.AtendimentoId == _atendimento.Id).GroupBy(i => i.ValorTotal).Sum(i => i.Key);
+            valorTotalAtendimentoGrade = dados.ObterDados<ItemAtendimento>().Where(i => i.AtendimentoId == _atendimento.Id).GroupBy(i => i.ValorTotal).Sum(i => i.Key);
             lblTotalAtendimento.Text = valorTotalAtendimentoGrade.ToString("F2");
 
             txtAtendimento.Text = _atendimento.Id.ToString("D4");
-            cbFormaPagamento.DataSource = database.FormaPagamento.ToList();
+            cbFormaPagamento.DataSource = dados.ObterDados<FormaPagamento>();
             cbFormaPagamento.DisplayMember = "Descricao";
             cbFormaPagamento.ValueMember = "Id";
         }
@@ -74,53 +75,35 @@ namespace Barbersoft.Views.FormCrud
         {
             if (valorTotalGrid.Equals(valorTotalAtendimentoGrade))
             {
-                Logging log = new();
-                BarbersoftContext databaseContext = new();
                 if (_pagamentoItem.Count > 0)
                 {
-                    try
+                    foreach (var item in _pagamentoItem)
                     {
-                        foreach (var item in _pagamentoItem)
+                        ItemFormaPagamento itemFormaPagamento = new()
                         {
-                            ItemFormaPagamento itemFormaPagamento = new()
-                            {
-                                AtendimentoId = _atendimento.Id,
-                                FormaPagamentoId = item.FormaPagamentoId,
-                                Valor = item.Valor,
-                                CriadoEm = DateTime.Now,
-                                CriadoPor = Usuario.UsuarioAtivo.Id
-                            };
-                            databaseContext.ItemFormaPagamento.Add(itemFormaPagamento);
-                        }
-                        Atendimento atendimento = new()
-                        {
-                            Id = _atendimento.Id,
-                            ClienteId = _atendimento.ClienteId,
-                            ProfissionalId = _atendimento.ProfissionalId,
-                            CriadoEm = _atendimento.CriadoEm,
-                            CriadoPor = _atendimento.CriadoPor,
-                            Ativo = _atendimento.Ativo,
-                            SituacaoId = (int)SituacaoEnum.Fechado,
-                            AlteradoEm = DateTime.Now,
-                            AlteradoPor = Usuario.UsuarioAtivo.Id
+                            AtendimentoId = _atendimento.Id,
+                            FormaPagamentoId = item.FormaPagamentoId,
+                            Valor = item.Valor,
+                            CriadoEm = DateTime.Now,
+                            CriadoPor = Usuario.UsuarioAtivo.Id
                         };
-                        try
-                        {
-                            databaseContext.Entry(atendimento).State = EntityState.Modified;
-                            databaseContext.Atendimento.Update(atendimento);
-                            databaseContext.SaveChanges();
-                            MessageBox.Show("Atendimento fechado", "Atenção");
-                            this.Close();
-                        } catch (Exception ex)
-                        {
-                            log.Log(ex);
-                            MessageBox.Show("Não foi possível mudar a situação do atendimento");
-                        }
-                    } catch (Exception ex)
-                    {
-                        log.Log(ex);
-                        MessageBox.Show("Não foi possível salvar, tente novamente mais tarde");
+                        dados.AdicionaDados(itemFormaPagamento);
                     }
+                    Atendimento atendimento = new()
+                    {
+                        Id = _atendimento.Id,
+                        ClienteId = _atendimento.ClienteId,
+                        ProfissionalId = _atendimento.ProfissionalId,
+                        CriadoEm = _atendimento.CriadoEm,
+                        CriadoPor = _atendimento.CriadoPor,
+                        Ativo = _atendimento.Ativo,
+                        SituacaoId = (int)SituacaoEnum.Fechado,
+                        AlteradoEm = DateTime.Now,
+                        AlteradoPor = Usuario.UsuarioAtivo.Id
+                    };
+                    dados.AtualizaDados(atendimento);
+                    MessageBox.Show("Atendimento Fechado com sucesso!", "Aviso");
+                    this.Close();
                 } else
                 {
                     MessageBox.Show("Para salvar é necessário ter pelo menos um item alocado");

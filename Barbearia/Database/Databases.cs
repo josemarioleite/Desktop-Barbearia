@@ -19,7 +19,6 @@ namespace Barbearia.Database
             barbersoftContext = new();
             log = new();
         }
-
         public bool Autenticacao(string login, string senha)
         {
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(senha))
@@ -123,30 +122,6 @@ namespace Barbearia.Database
                 log.Log(ex);
                 return false;
             }
-        }
-        public List<AtendimentoFiltro> RetornaAtendimentoFiltros()
-        {
-            List<AtendimentoFiltro> atendimentoFiltro = new();
-            try
-            {
-                atendimentoFiltro = (from a in barbersoftContext.Atendimento
-                        join b in barbersoftContext.Cliente on a.ClienteId equals b.Id
-                        join c in barbersoftContext.Profissional on a.ProfissionalId equals c.Id
-                        join d in barbersoftContext.Situacao on a.SituacaoId equals d.Id
-                        select new AtendimentoFiltro()
-                        {
-                            Id = a.Id,
-                            Situacao = d.Descricao.ToUpper(),
-                            Cliente = b.Nome.ToUpper(),
-                            Profissional = c.Nome.ToUpper(),
-                            Data = DateTime.Parse(a.CriadoEm.ToString("dd/MM/yyyy"))
-                        }).OrderByDescending(a => a.Id).ToList();
-            } catch (Exception ex)
-            {
-                log.Log(ex);
-                MessageBox.Show("Não foi possível obter atendimentos", "Atenção");
-            }
-            return atendimentoFiltro;
         }
     }
 }

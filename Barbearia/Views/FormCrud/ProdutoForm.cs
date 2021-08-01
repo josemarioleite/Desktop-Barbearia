@@ -8,18 +8,18 @@ using System.Windows.Forms;
 
 namespace Barbearia.Views.FormProduto
 {
-    public partial class Produto : Form
+    public partial class ProdutoForm : Form
     {
         private readonly bool modoInclusao = false;
-        private readonly Barbersoft.Models.Produto _produto;
-        public Produto(bool inclusao)
+        private readonly Produto _produto;
+        public ProdutoForm(bool inclusao)
         {
             InitializeComponent();
 
             modoInclusao = inclusao;
             IniciaCampoDefault();
         }
-        public Produto(bool inclusao, Barbersoft.Models.Produto produto)
+        public ProdutoForm(bool inclusao, Produto produto)
         {
             InitializeComponent();
 
@@ -29,7 +29,7 @@ namespace Barbearia.Views.FormProduto
             IniciaCamposPreenchidos();
         }
 
-        private void BtnSair(object sender, System.EventArgs e)
+        private void BtnSair(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -105,7 +105,7 @@ namespace Barbearia.Views.FormProduto
                 comissaoPorcentagem = "P";
             }
 
-            Barbersoft.Models.Produto produto = new()
+            Produto produto = new()
             {
                 Nome = txtNome.Text.ToUpper(),
                 ComissaoPorcentagem = comissaoPorcentagem,

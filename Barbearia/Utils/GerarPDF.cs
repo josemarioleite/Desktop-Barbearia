@@ -1,33 +1,34 @@
-﻿using Barbearia.Database;
-using Barbearia.Log;
-using Barbersoft.Models.DTO;
+﻿using Barbearia.Log;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
 namespace Barbersoft.Utils
 {
     public class GerarPDF
     {
         private static BaseFont fonteBase = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
-        public string GerarDocumentoPDF()
+        private readonly ObterDadosGenericos dados;
+        public GerarPDF()
+        {
+            dados = new();
+        }
+        public string GerarDocumentoPDF(string tituloRelatorio, DateTime dataInicial, DateTime dataFinal)
         {
             string origem = "";
             try
             {
                 // calculo de quantidade total de paginas
                 int totalPaginas = 1;
-                int totalLinhas = ObterAtendimentos().Count;
+                int totalLinhas = dados.RetornaAtendimentoFiltros(dataInicial, dataFinal).Count;
                 if (totalLinhas > 24)
                     totalPaginas += (int)Math.Ceiling((totalLinhas - 24) / 29F);
 
                 //configuração do pdf
                 var pxPorMm = 72 / 25.2F;
                 var pdf = new Document(PageSize.A4, 5 * pxPorMm, 5 * pxPorMm, 5 * pxPorMm, 15 * pxPorMm);
-                var nomeArquivo = "RelatorioAtendimento";
+                var nomeArquivo = "RelatorioBarbersoft";
                 var arquivo = new FileStream(nomeArquivo, FileMode.Create);
                 var writer = PdfWriter.GetInstance(pdf, arquivo);
                 writer.PageEvent = new EventosPagina(totalPaginas);
@@ -35,7 +36,7 @@ namespace Barbersoft.Utils
 
                 //adição do título
                 var fonteParagrafo = new Font(fonteBase, 22, Font.NORMAL);
-                var titulo = new Paragraph("Relatório de Atendimento\n\n", fonteParagrafo);
+                var titulo = new Paragraph($"{tituloRelatorio.ToUpper()}\n\n", fonteParagrafo);
                 titulo.Alignment = Element.ALIGN_LEFT;
                 titulo.SpacingAfter = 4;
                 pdf.Add(titulo);
@@ -69,7 +70,7 @@ namespace Barbersoft.Utils
                 CriarCelulaTexto(tabela, "Profissional", PdfPCell.ALIGN_LEFT, true);
                 CriarCelulaTexto(tabela, "Situação", PdfPCell.ALIGN_LEFT, true);
 
-                foreach (var atend in ObterAtendimentos())
+                foreach (var atend in dados.RetornaAtendimentoFiltros(dataInicial, dataFinal))
                 {
                     CriarCelulaTexto(tabela, atend.Id.ToString("D5"), PdfPCell.ALIGN_RIGHT);
                     CriarCelulaTexto(tabela, atend.Data.ToString("dd/MM/yyyy"), PdfPCell.ALIGN_CENTER);
@@ -95,21 +96,6 @@ namespace Barbersoft.Utils
                 new Logging().Log(ex);
             }            
             return origem;
-        }
-        private List<AtendimentoFiltro> ObterAtendimentos()
-        {
-            Databases database = new();
-            Logging log = new();
-            List<AtendimentoFiltro> atendimentos = new();
-            try
-            {
-                atendimentos = database.RetornaAtendimentoFiltros();
-            } catch (Exception ex)
-            {
-                log.Log(ex);
-                MessageBox.Show("Não foi possível obter atendimentos", "Atenção");
-            }
-            return atendimentos;
         }
         private static void CriarCelulaTexto(PdfPTable tabela, string texto, int alinhamentoHorz = PdfPCell.ALIGN_LEFT,
             bool negrito = false, bool italico = false, int tamanhoFonte = 12, int alturaCelula = 25)
@@ -144,24 +130,3 @@ namespace Barbersoft.Utils
         }
     }
 }
-//Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);   PDFSHARP
-//PdfDocument document = new();
-//PdfPage page = document.AddPage();
-//XGraphics gfx = XGraphics.FromPdfPage(page);
-//XFont font = new XFont("Arial", 16);
-//XColor color = XColor.FromArgb(0, 0, 0);
-//string imagePath = "";
-
-//OpenFileDialog dialog = new();
-//if (dialog.ShowDialog() == DialogResult.OK)
-//{
-//    imagePath = dialog.FileName;
-//}
-
-//XImage image = XImage.FromFile(imagePath);
-//gfx.DrawRectangle(XBrushes.Black, new XRect(10, 5, page.Width - 20, page.Height - 841));
-//gfx.DrawString("Relatório de Atendimento", font, XBrushes.Black, new XRect(10, 8, page.Width, page.Height), XStringFormats.TopLeft);
-//gfx.DrawImage(image, 20, 20, 250, 140);
-//gfx.DrawRectangle(XBrushes.Black, new XRect(10, 28, page.Width - 20, page.Height - 841));
-//arquivo = Directory.GetCurrentDirectory() + "\\arquivoPDF.pdf";
-//document.Save(arquivo);

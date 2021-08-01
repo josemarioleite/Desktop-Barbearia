@@ -1,6 +1,8 @@
 ﻿using Barbearia.Database;
 using Barbearia.Log;
+using Barbersoft.Models;
 using Barbersoft.Models.DTO;
+using Barbersoft.Utils;
 using Barbersoft.Views.FormCrud;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,16 +14,16 @@ namespace Barbearia.Views
 {
     public partial class ServicoView : Form
     {
-        private readonly BarbersoftContext barbersoftContext;
+        private readonly ObterDadosGenericos dados;
         public ServicoView()
         {
             InitializeComponent();
 
-            barbersoftContext = new BarbersoftContext();
+            dados = new();
         }
         private void RecebeDadosBanco()
         {
-            dgServico.DataSource = barbersoftContext.Servico.AsNoTracking().Select(p => new ServicoDTO()
+            dgServico.DataSource = dados.ObterDados<Servico>().Select(p => new ServicoDTO()
             {
                 Id = p.Id,
                 Nome = p.Nome,
@@ -57,28 +59,19 @@ namespace Barbearia.Views
         }
         private dynamic ObtemDadosServicoPorID(int id)
         {
-            return barbersoftContext.Servico.FirstOrDefault(p => p.Id == id);
+            return dados.ObterDados<Servico>().FirstOrDefault(s => s.Id == id);
         }
         private void BtnExcluir(object sender, EventArgs e)
         {
             if (dgServico.Rows.Count > 0)
             {
-                Logging log = new();
                 int id = (int)dgServico.SelectedRows[0].Cells[0].Value;
                 var servico = ObtemDadosServicoPorID(id);
                 DialogResult dialogResult = MessageBox.Show($"Deseja excluir o Serviço: {servico.Nome} ?", "Atenção", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    try
-                    {
-                        barbersoftContext.Servico.Remove(servico);
-                        barbersoftContext.SaveChanges();
-                        RecebeDadosBanco();
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Log(ex);
-                    }
+                    dados.RemoveDados<Servico>(servico);
+                    RecebeDadosBanco();
                 }
             } else
             {

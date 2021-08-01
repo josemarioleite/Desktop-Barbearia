@@ -1,8 +1,8 @@
-﻿using Barbearia.Database;
-using Barbearia.Log;
+﻿using Barbearia.Log;
 using Barbearia.Models.DTO;
+using Barbearia.Views.FormProduto;
 using Barbersoft.Models;
-using Microsoft.EntityFrameworkCore;
+using Barbersoft.Utils;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -12,19 +12,16 @@ namespace Barbearia.Views
 {
     public partial class ProdutoView : Form
     {
-        private readonly BarbersoftContext barbersoftContext;
+        private readonly ObterDadosGenericos dados;
         public ProdutoView()
         {
             InitializeComponent();
 
-            barbersoftContext = new BarbersoftContext();
+            dados = new();
         }
         private void RecebeDadosBanco()
         {
-            dgProduto.DataSource = barbersoftContext.Produto
-                                        .AsNoTracking()
-                                        .Where(p => p.Ativo == "S")
-                                        .Select(p => new ProdutoDTO()
+            dgProduto.DataSource = dados.ObterDados<Produto>().Select(p => new ProdutoDTO()
             {
                 Id = p.Id,
                 Nome = p.Nome,
@@ -35,7 +32,7 @@ namespace Barbearia.Views
         }
         private Produto ObtemDadosProdutoPorID(int id)
         {
-            return barbersoftContext.Produto.FirstOrDefault(p => p.Id == id);
+            return dados.ObterDados<Produto>().FirstOrDefault(p => p.Id == id);
         }
         public void ConfiguraDataGrid()
         {
@@ -43,7 +40,6 @@ namespace Barbearia.Views
             dgProduto.Columns[1].Width = 445;
             dgProduto.Columns[2].Width = 60;
             dgProduto.Columns[3].Width = 150;
-            //dgProduto.Columns[4].Width = 100;
             dgProduto.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgProduto.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
 
@@ -80,15 +76,8 @@ namespace Barbearia.Views
                 DialogResult dialogResult = MessageBox.Show($"Deseja excluir o Produto: {produto.Nome} ?", "Atenção", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    try
-                    {
-                        barbersoftContext.Produto.Remove(produto);
-                        barbersoftContext.SaveChanges();
-                        RecebeDadosBanco();
-                    } catch (Exception ex)
-                    {
-                        log.Log(ex);
-                    }                
+                    dados.RemoveDados(produto);
+                    RecebeDadosBanco();
                 }
             } else
             {
@@ -97,7 +86,7 @@ namespace Barbearia.Views
         }
         private void BtnAdd(object sender, EventArgs e)
         {
-            FormProduto.Produto formProduto = new(true);
+            ProdutoForm formProduto = new(true);
             formProduto.ShowDialog();
             RecebeDadosBanco();
         }
@@ -107,7 +96,7 @@ namespace Barbearia.Views
             {
                 var id = (int)dgProduto.SelectedRows[0].Cells[0].Value;
                 Produto produto = ObtemDadosProdutoPorID(id);
-                FormProduto.Produto formProduto = new(false, produto);
+                ProdutoForm formProduto = new(false, produto);
                 formProduto.ShowDialog();
                 RecebeDadosBanco();
             } else

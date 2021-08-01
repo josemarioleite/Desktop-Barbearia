@@ -1,7 +1,6 @@
 ﻿using Barbersoft.Gestor;
 using Barbersoft.Models;
-using Barbersoft.PdfViewer;
-using Barbersoft.Properties;
+using Barbersoft.PdfViewer.AtendimentoViewer;
 using Barbersoft.Views;
 using System;
 using System.Windows.Forms;
@@ -69,38 +68,62 @@ namespace Barbearia.Views
         }
         private void OnLoad(object sender, EventArgs e)
         {
+            timer1.Start();
             this.KeyPreview = true;
             lblNomeUsuario.Text = Usuario.UsuarioAtivo.Nome;
             lblVersao.Text = Sistema.Versao;
         }
-        private void BtnArquivo(object sender, EventArgs e)
+        private void BtnRelatorioAtendimento(object sender, EventArgs e)
         {
-            PDFViewerForm pdf = new();
-            pdf.ShowDialog();
+            new AtendimentoViewerForm().ShowDialog();
         }
         private void timer1_Tick(object sender, EventArgs e)
+        {
+            DropDownButton(panelDropDown, timer1);
+        }
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            DropDownButton(panelDropDownCadastro, timer2);
+        }
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            DropDownButton(panelDropDownFinanceiro, timer3);
+        }
+        private void BtnCadastro(object sender, EventArgs e)
+        {
+            timer2.Start();
+            DropDownButton(panelDropDownCadastro, timer2);
+        }
+        private void BtnFinanceiro(object sender, EventArgs e)
+        {
+            timer3.Start();
+            DropDownButton(panelDropDownFinanceiro, timer3);
+        }
+        private void BtnAtendimentoDropDown(object sender, EventArgs e)
+        {
+            timer1.Start();
+            DropDownButton(panelDropDown, timer1);
+        }
+        private void DropDownButton(Panel panelDropDown, Timer timer)
         {
             if (isCollapsed)
             {
                 panelDropDown.Height += 10;
                 if (panelDropDown.Size == panelDropDown.MaximumSize)
                 {
-                    timer1.Stop();
+                    timer.Stop();
                     isCollapsed = false;
                 }
-            } else
+            }
+            else
             {
                 panelDropDown.Height -= 10;
                 if (panelDropDown.Size == panelDropDown.MinimumSize)
                 {
-                    timer1.Stop();
+                    timer.Stop();
                     isCollapsed = true;
                 }
             }
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
         }
     }
 }

@@ -3,8 +3,8 @@ using Barbearia.Log;
 using Barbersoft.Enum;
 using Barbersoft.Models;
 using Barbersoft.Models.DTO;
+using Barbersoft.Utils;
 using Barbersoft.Views.FormCrud;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,11 +17,13 @@ namespace Barbersoft.Views
     public partial class AtendimentoView : Form
     {
         private readonly BarbersoftContext barbersoftContext;
+        private readonly ObterDadosGenericos dados;
         public AtendimentoView()
         {
             InitializeComponent();
 
             barbersoftContext = new();
+            dados = new();
         }
         private Atendimento ObtemDadosAtendimentoPorID(int id)
         {
@@ -57,44 +59,7 @@ namespace Barbersoft.Views
         }
         private void RecebeDadosBanco()
         {
-            ImageConverter converter = new();
-            List<AtendimentoDTO> atendimento = (from a in barbersoftContext.Atendimento
-                                                      join b in barbersoftContext.Cliente on a.ClienteId equals b.Id
-                                                      join c in barbersoftContext.Profissional on a.ProfissionalId equals c.Id
-                                                      join d in barbersoftContext.Situacao on a.SituacaoId equals d.Id
-                                                      select new AtendimentoDTO()
-                                                      {
-                                                          Id = a.Id,
-                                                          Situacao = d.Descricao.ToUpper(),
-                                                          Cliente = b.Nome.ToUpper(),
-                                                          Profissional = c.Nome.ToUpper(),
-                                                          Data = DateTime.Parse(a.CriadoEm.ToString("dd/MM/yyyy"))
-                                                      }).OrderByDescending(a => a.Id).ToList();
-
-            foreach (AtendimentoDTO dto in atendimento)
-            {
-                if (dto.Situacao.ToLower().Equals("aberto"))
-                {
-                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.Aberto, typeof(byte[]));
-                }
-                else if (dto.Situacao.ToLower().Equals("financeiro"))
-                {
-                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.financeiro, typeof(byte[]));
-                }
-                else if (dto.Situacao.ToLower().Equals("fechado"))
-                {
-                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.Fechado, typeof(byte[]));
-                }
-                else if (dto.Situacao.ToLower().Equals("cancelado"))
-                {
-                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.cancelado, typeof(byte[]));
-                }
-
-                decimal valorTotal = barbersoftContext.ItemAtendimento.Where(i => i.AtendimentoId == dto.Id).GroupBy(i => i.ValorTotal).Sum(i => i.Key);
-                dto.Total += valorTotal.ToString("N2", CultureInfo.CurrentCulture).Replace("R$", "");
-            }
-
-            dgAtendimento.DataSource = atendimento;
+            dgAtendimento.DataSource = dados.ObterDadosAtendimento();
         }
         private void ConfiguraDataGrid()
         {
@@ -104,7 +69,6 @@ namespace Barbersoft.Views
             dgAtendimento.Columns[3].Width = 205;
             dgAtendimento.Columns[4].Width = 205;
             dgAtendimento.Columns[5].Width = 100;
-            //dgAtendimento.Columns[6].Width = 75;
             dgAtendimento.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgAtendimento.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
 
@@ -231,8 +195,14 @@ namespace Barbersoft.Views
             {
                 if (cbPesquisa.SelectedItem.ToString().ToLower() == "data" && !string.IsNullOrEmpty(dtInicial.Value.ToString("dd/MM/yyyy")))
                 {
-                    var data = atendimento.Where(a => a.Data >= dtInicial.Value && a.Data <= dtFinal.Value).ToList();
-                    dgAtendimento.DataSource = data;
+                    if (dtInicial.Value <= dtFinal.Value)
+                    {
+                        var data = atendimento.Where(a => a.Data >= dtInicial.Value && a.Data <= dtFinal.Value).ToList();
+                        dgAtendimento.DataSource = data;
+                    } else
+                    {
+                        MessageBox.Show("A Data Inicial não pode ser maior que a Data Final", "Aviso");
+                    }                    
                 }
             }
             else
@@ -342,7 +312,7 @@ namespace Barbersoft.Views
                     {
                         Atendimento_FormaPagamentoForm formaPagamento = new(id);
                         formaPagamento.ShowDialog();
-                        RecebeDadosBanco();
+                        dgAtendimento.DataSource = dados.ObterDadosAtendimento();
                     }
                 }
             }

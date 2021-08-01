@@ -3,6 +3,7 @@ using Barbearia.Log;
 using Barbearia.Views;
 using Barbersoft.Enum;
 using Barbersoft.Models;
+using Barbersoft.Utils;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,11 +13,13 @@ namespace Barbersoft.Views.FormCrud
     public partial class formAtendimento : Form
     {
         private readonly bool modoInclusao;
+        private readonly ObterDadosGenericos dados;
         public formAtendimento(bool inclusao)
         {
             InitializeComponent();
 
             modoInclusao = inclusao;
+            dados = new();
         }
         private void CamposPreenchidos()
         {
@@ -36,9 +39,7 @@ namespace Barbersoft.Views.FormCrud
         }
         private void BtnSalvar(object sender, EventArgs e)
         {
-            BarbersoftContext database = new();
             Logging log = new();
-
             if (modoInclusao == true)
             {
                 Atendimento atendimento = new()
@@ -46,7 +47,6 @@ namespace Barbersoft.Views.FormCrud
                     ClienteId = (int)cbCliente.SelectedValue,
                     ProfissionalId = (int)cbProfissional.SelectedValue
                 };
-
                 atendimento.CriadoEm = DateTime.Now;
                 atendimento.CriadoPor = Usuario.UsuarioAtivo.Id;
                 atendimento.Ativo = "S";
@@ -55,8 +55,7 @@ namespace Barbersoft.Views.FormCrud
                 {
                     if (atendimento.ClienteId > 0 && atendimento.ProfissionalId > 0)
                     {
-                        database.Atendimento.Add(atendimento);
-                        database.SaveChanges();
+                        dados.AdicionaDados(atendimento);
                         this.Close();
                     }
                     else
