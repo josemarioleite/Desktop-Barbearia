@@ -31,6 +31,10 @@ namespace Barbersoft.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClienteView));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbClienteNome = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -47,6 +51,10 @@ namespace Barbersoft.Views
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.panel1.Controls.Add(this.tbClienteNome);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnAlterar);
             this.panel1.Controls.Add(this.btnExcluir);
             this.panel1.Controls.Add(this.btnAdd);
@@ -58,8 +66,53 @@ namespace Barbersoft.Views
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(591, 74);
+            this.panel1.Size = new System.Drawing.Size(591, 109);
             this.panel1.TabIndex = 2;
+            // 
+            // tbClienteNome
+            // 
+            this.tbClienteNome.BackColor = System.Drawing.Color.White;
+            this.tbClienteNome.Location = new System.Drawing.Point(97, 81);
+            this.tbClienteNome.Name = "tbClienteNome";
+            this.tbClienteNome.Size = new System.Drawing.Size(190, 20);
+            this.tbClienteNome.TabIndex = 59;
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(330, 71);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(31, 30);
+            this.button3.TabIndex = 45;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.BtnLimparDados);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(293, 71);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(31, 30);
+            this.button2.TabIndex = 44;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.BtnPesquisar);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(11, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Pesquisar Nome:";
             // 
             // btnAlterar
             // 
@@ -126,9 +179,9 @@ namespace Barbersoft.Views
             // 
             this.pictureBox1.BackgroundImage = global::Barbersoft.Properties.Resources.Logo_Empresa_Barbersoft1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(316, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(368, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(259, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(212, 44);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
@@ -152,13 +205,14 @@ namespace Barbersoft.Views
             this.dgCliente.BackgroundColor = System.Drawing.Color.White;
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCliente.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgCliente.Location = new System.Drawing.Point(0, 74);
+            this.dgCliente.Location = new System.Drawing.Point(0, 109);
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.ReadOnly = true;
             this.dgCliente.RowTemplate.Height = 25;
             this.dgCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCliente.Size = new System.Drawing.Size(591, 418);
+            this.dgCliente.Size = new System.Drawing.Size(591, 383);
             this.dgCliente.TabIndex = 3;
+            this.dgCliente.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Cliente_MouseDoubleClick);
             // 
             // ClienteView
             // 
@@ -194,5 +248,9 @@ namespace Barbersoft.Views
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label txtadd;
         private System.Windows.Forms.DataGridView dgCliente;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tbClienteNome;
     }
 }

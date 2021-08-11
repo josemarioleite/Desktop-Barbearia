@@ -70,7 +70,6 @@ namespace Barbearia.Views
         {
             if (dgProduto.Rows.Count > 0)
             {
-                Logging log = new();
                 int id = (int)dgProduto.SelectedRows[0].Cells[0].Value;
                 Produto produto = ObtemDadosProdutoPorID(id);
                 DialogResult dialogResult = MessageBox.Show($"Deseja excluir o Produto: {produto.Nome} ?", "Atenção", MessageBoxButtons.YesNo);

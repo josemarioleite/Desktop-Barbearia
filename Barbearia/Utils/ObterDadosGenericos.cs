@@ -19,6 +19,76 @@ namespace Barbersoft.Utils
         {
             log = new();
         }
+        public List<ContaPagarDTO> RetornaContaPagarFiltrado()
+        {
+            BarbersoftContext database = new();
+            ImageConverter converter = new();
+            List<ContaPagarDTO> contaPagar =
+                (from a in ObterDados<ContaPagar>()
+                 join b in ObterDados<Fornecedor>() on a.FornecedorId equals b.Id
+                 join c in ObterDados<Situacao>() on a.SituacaoId equals c.Id
+                 select new ContaPagarDTO()
+                 {
+                     Id = a.Id,
+                     Descricao = a.Descricao.ToUpper(),
+                     DataLancamento = a.DataLancamento.ToShortDateString(),
+                     DataVencimento = a.DataVencimento.ToShortDateString(),
+                     Fornecedor = b.Nome.ToUpper(),
+                     Situacao = c.Descricao.ToUpper(),
+                     Valor = a.Valor
+                 }).OrderByDescending(a => a.Id).ToList();
+            foreach (ContaPagarDTO dto in contaPagar)
+            {
+                if (dto.Situacao.ToLower().Equals("aberto"))
+                {
+                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.financeiro, typeof(byte[]));
+                }
+                else if (dto.Situacao.ToLower().Equals("fechado"))
+                {
+                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.Fechado, typeof(byte[]));
+                }
+                else if (dto.Situacao.ToLower().Equals("cancelado"))
+                {
+                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.cancelado, typeof(byte[]));
+                }
+            }
+            return contaPagar;
+        }
+        public List<ContaReceberDTO> RetornaContaReceberFiltrado()
+        {
+            BarbersoftContext database = new();
+            ImageConverter converter = new();
+            List<ContaReceberDTO> contaReceber =
+                (from a in ObterDados<ContaReceber>()
+                 join b in ObterDados<Cliente>() on a.ClienteId equals b.Id
+                 join c in ObterDados<Situacao>() on a.SituacaoId equals c.Id
+                 select new ContaReceberDTO()
+                 {
+                     Id = a.Id,
+                     Descricao = a.Descricao.ToUpper(),
+                     DataLancamento = a.DataLancamento.ToShortDateString(),
+                     DataVencimento = a.DataVencimento.ToShortDateString(),
+                     Cliente = b.Nome.ToUpper(),
+                     Situacao = c.Descricao.ToUpper(),
+                     Valor = a.Valor
+                 }).OrderByDescending(a => a.Id).ToList();
+            foreach (ContaReceberDTO dto in contaReceber)
+            {
+                if (dto.Situacao.ToLower().Equals("aberto"))
+                {
+                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.financeiro, typeof(byte[]));
+                }
+                else if (dto.Situacao.ToLower().Equals("fechado"))
+                {
+                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.Fechado, typeof(byte[]));
+                }
+                else if (dto.Situacao.ToLower().Equals("cancelado"))
+                {
+                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.cancelado, typeof(byte[]));
+                }
+            }
+            return contaReceber;
+        }
         public List<AtendimentoDTO> ObterDadosAtendimento()
         {
             BarbersoftContext database = new();
@@ -41,10 +111,6 @@ namespace Barbersoft.Utils
             {
                 if (dto.Situacao.ToLower().Equals("aberto"))
                 {
-                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.Aberto, typeof(byte[]));
-                }
-                else if (dto.Situacao.ToLower().Equals("financeiro"))
-                {
                     dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.financeiro, typeof(byte[]));
                 }
                 else if (dto.Situacao.ToLower().Equals("fechado"))
@@ -55,11 +121,9 @@ namespace Barbersoft.Utils
                 {
                     dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.cancelado, typeof(byte[]));
                 }
-
                 decimal valorTotal = ObterDados<ItemAtendimento>().Where(i => i.AtendimentoId == dto.Id).GroupBy(i => i.ValorTotal).Sum(i => i.Key);
                 dto.Total += valorTotal.ToString("N2", CultureInfo.CurrentCulture).Replace("R$", "");
             }
-
             return atendimento;
         }
         public List<AtendimentoFiltro> RetornaAtendimentoFiltros(DateTime dataInicial, DateTime dataFinal)

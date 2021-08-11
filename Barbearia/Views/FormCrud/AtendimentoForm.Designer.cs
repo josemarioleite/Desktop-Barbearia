@@ -47,6 +47,7 @@ namespace Barbersoft.Views.FormCrud
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dtData = new System.Windows.Forms.MaskedTextBox();
+            this.tbClienteNome = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -75,12 +76,12 @@ namespace Barbersoft.Views.FormCrud
             // cbCliente
             // 
             this.cbCliente.BackColor = System.Drawing.Color.White;
-            this.cbCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbCliente.FormattingEnabled = true;
             this.cbCliente.Location = new System.Drawing.Point(14, 113);
             this.cbCliente.Name = "cbCliente";
-            this.cbCliente.Size = new System.Drawing.Size(268, 23);
+            this.cbCliente.Size = new System.Drawing.Size(71, 23);
             this.cbCliente.TabIndex = 34;
+            this.cbCliente.Click += new System.EventHandler(this.Cliente_CBClick);
             // 
             // label1
             // 
@@ -224,12 +225,22 @@ namespace Barbersoft.Views.FormCrud
             this.dtData.TabIndex = 47;
             this.dtData.ValidatingType = typeof(System.DateTime);
             // 
+            // tbClienteNome
+            // 
+            this.tbClienteNome.BackColor = System.Drawing.Color.White;
+            this.tbClienteNome.Location = new System.Drawing.Point(91, 113);
+            this.tbClienteNome.Name = "tbClienteNome";
+            this.tbClienteNome.ReadOnly = true;
+            this.tbClienteNome.Size = new System.Drawing.Size(192, 23);
+            this.tbClienteNome.TabIndex = 58;
+            // 
             // formAtendimento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(624, 290);
+            this.Controls.Add(this.tbClienteNome);
             this.Controls.Add(this.dtData);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.linhaData);
@@ -277,5 +288,6 @@ namespace Barbersoft.Views.FormCrud
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MaskedTextBox dtData;
+        private System.Windows.Forms.TextBox tbClienteNome;
     }
 }

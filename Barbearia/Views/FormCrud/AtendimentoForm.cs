@@ -12,6 +12,7 @@ namespace Barbersoft.Views.FormCrud
 {
     public partial class formAtendimento : Form
     {
+        private Cliente _cliente;
         private readonly bool modoInclusao;
         private readonly ObterDadosGenericos dados;
         public formAtendimento(bool inclusao)
@@ -23,17 +24,12 @@ namespace Barbersoft.Views.FormCrud
         }
         private void CamposPreenchidos()
         {
-            BarbersoftContext database = new();
             if (modoInclusao == true)
             {
-                cbCliente.DataSource = database.Cliente.ToList();
-                cbProfissional.DataSource = database.Profissional.ToList();
+                cbProfissional.DataSource = dados.ObterDados<Profissional>();
                 dtData.Text = DateTime.Now.ToString();
 
                 cbProfissional.ValueMember = "Id";
-                cbCliente.ValueMember = "Id";
-
-                cbCliente.DisplayMember = "Nome";
                 cbProfissional.DisplayMember = "Nome";
             }
         }
@@ -42,31 +38,34 @@ namespace Barbersoft.Views.FormCrud
             Logging log = new();
             if (modoInclusao == true)
             {
-                Atendimento atendimento = new()
+                if (_cliente != null)
                 {
-                    ClienteId = (int)cbCliente.SelectedValue,
-                    ProfissionalId = (int)cbProfissional.SelectedValue
-                };
-                atendimento.CriadoEm = DateTime.Now;
-                atendimento.CriadoPor = Usuario.UsuarioAtivo.Id;
-                atendimento.Ativo = "S";
-                atendimento.SituacaoId = (int)SituacaoEnum.Aberto;
-                try
-                {
-                    if (atendimento.ClienteId > 0 && atendimento.ProfissionalId > 0)
+                    Atendimento atendimento = new()
                     {
-                        dados.AdicionaDados(atendimento);
-                        this.Close();
-                    }
-                    else
+                        ClienteId = _cliente.Id,
+                        ProfissionalId = (int)cbProfissional.SelectedValue
+                    };
+                    atendimento.CriadoEm = DateTime.Now;
+                    atendimento.CriadoPor = Usuario.UsuarioAtivo.Id;
+                    atendimento.Ativo = "S";
+                    atendimento.SituacaoId = (int)SituacaoEnum.Aberto;
+                    try
                     {
-                        MessageBox.Show("o Campo Cliente e Profissional devem estar preenchidos");
+                        if (atendimento.ClienteId > 0 && atendimento.ProfissionalId > 0)
+                        {
+                            dados.AdicionaDados(atendimento);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("o Campo Cliente e Profissional devem estar preenchidos");
+                        }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Não foi possível fazer a inclusão, tente novamente mais tarde");
-                    log.Log(ex);
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Não foi possível fazer a inclusão, tente novamente mais tarde");
+                        log.Log(ex);
+                    }
                 }
             }
         }
@@ -103,6 +102,17 @@ namespace Barbersoft.Views.FormCrud
                 profissional.ShowDialog();
             }
             CamposPreenchidos();
+        }
+        private void Cliente_CBClick(object sender, EventArgs e)
+        {
+            ClienteView cliente = new(true);
+            cliente.ShowDialog();
+            if (cliente.Cliente != null)
+            {
+                _cliente = cliente.Cliente;
+                cbCliente.Text = _cliente.Id.ToString("D4");
+                tbClienteNome.Text = _cliente.Nome;
+            }
         }
     }
 }

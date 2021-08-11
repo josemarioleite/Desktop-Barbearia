@@ -9,9 +9,7 @@ namespace Barbearia.Database
         public BarbersoftContext()
         {
         }
-
         public BarbersoftContext(DbContextOptions<BarbersoftContext> options) : base(options) {}
-
         public virtual DbSet<Atendimento> Atendimento { get; set; }
         public virtual DbSet<ItemAtendimento> ItemAtendimento { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
@@ -24,7 +22,9 @@ namespace Barbearia.Database
         public virtual DbSet<FormaPagamento> FormaPagamento { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<ItemFormaPagamento> ItemFormaPagamento { get; set; }
-
+        public DbSet<ContaPagar> ContaPagar { get; set; }
+        public DbSet<ContaReceber> ContaReceber { get; set; }
+        public DbSet<Fornecedor> Fornecedor { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -33,7 +33,6 @@ namespace Barbearia.Database
                 optionsBuilder.UseMySql(connString, ServerVersion.Parse("8.0.23-mysql"));
             }
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasCharSet("utf8mb4")
@@ -308,6 +307,61 @@ namespace Barbearia.Database
                 entity.Property(e => e.SuperUser)
                     .HasMaxLength(1)
                     .HasDefaultValueSql("'S'");
+            });
+            modelBuilder.Entity<ContaPagar>(entity =>
+            {
+                entity.ToTable("contapagar");
+
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.AlteradoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.CriadoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.DeletadoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+            modelBuilder.Entity<ContaReceber>(entity =>
+            {
+                entity.ToTable("contareceber");
+
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.AlteradoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.CriadoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.DeletadoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(100);
+            });
+            modelBuilder.Entity<Fornecedor>(entity =>
+            {
+                entity.ToTable("fornecedor");
+
+                entity.Property(e => e.Ativo)
+                    .IsRequired()
+                    .HasMaxLength(1)
+                    .HasDefaultValueSql("'S'");
+
+                entity.Property(e => e.AlteradoEm).HasColumnType("datetime");
+
+                entity.Property(e => e.CriadoEm)
+                    .HasColumnType("datetime")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.Property(e => e.DeletadoEm).HasColumnType("datetime");
+
+                entity.Property(e => e.Nome)
+                    .IsRequired()
+                    .HasMaxLength(45);
             });
             OnModelCreatingPartial(modelBuilder);
         }

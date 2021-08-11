@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Barbearia.Database;
 using Barbearia.Log;
-using Barbearia.Models;
 using Barbersoft.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,7 +11,7 @@ namespace Barbersoft.Views.FormCrud
     public partial class ServicoForm : Form
     {
         private readonly bool modoInclusao = false;
-        private readonly Barbersoft.Models.Servico _servico;
+        private readonly Servico _servico;
         public ServicoForm(bool inclusao)
         {
             InitializeComponent();

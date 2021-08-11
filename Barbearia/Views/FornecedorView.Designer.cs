@@ -1,7 +1,7 @@
 ﻿
-namespace Barbearia.Views
+namespace Barbersoft.Views
 {
-    partial class ProfissionalView
+    partial class FornecedorView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,38 +29,76 @@ namespace Barbearia.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfissionalView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FornecedorView));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblEscolher = new System.Windows.Forms.Label();
+            this.btnEscolher = new Barbearia.Custom.RoundedButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.roundedButton3 = new Barbearia.Custom.RoundedButton();
             this.roundedButton2 = new Barbearia.Custom.RoundedButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.txtadd = new System.Windows.Forms.Label();
-            this.dgProfissional = new System.Windows.Forms.DataGridView();
+            this.dgFornecedor = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgProfissional)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFornecedor)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(94)))), ((int)(((byte)(242)))));
+            this.panel1.Controls.Add(this.lblEscolher);
+            this.panel1.Controls.Add(this.btnEscolher);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.roundedButton3);
             this.panel1.Controls.Add(this.roundedButton2);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pbLogo);
             this.panel1.Controls.Add(this.txtadd);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(867, 74);
-            this.panel1.TabIndex = 1;
+            this.panel1.Size = new System.Drawing.Size(545, 74);
+            this.panel1.TabIndex = 2;
+            // 
+            // lblEscolher
+            // 
+            this.lblEscolher.AutoSize = true;
+            this.lblEscolher.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblEscolher.ForeColor = System.Drawing.Color.White;
+            this.lblEscolher.Location = new System.Drawing.Point(486, 56);
+            this.lblEscolher.Name = "lblEscolher";
+            this.lblEscolher.Size = new System.Drawing.Size(48, 13);
+            this.lblEscolher.TabIndex = 9;
+            this.lblEscolher.Text = "Escolher";
+            this.lblEscolher.Visible = false;
+            // 
+            // btnEscolher
+            // 
+            this.btnEscolher.BackColor = System.Drawing.Color.Transparent;
+            this.btnEscolher.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnEscolher.BackgroundImage")));
+            this.btnEscolher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnEscolher.BorderColor = System.Drawing.Color.Empty;
+            this.btnEscolher.ButtonColor = System.Drawing.Color.Empty;
+            this.btnEscolher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEscolher.ForeColor = System.Drawing.Color.Transparent;
+            this.btnEscolher.Location = new System.Drawing.Point(483, 9);
+            this.btnEscolher.Name = "btnEscolher";
+            this.btnEscolher.OnHoverBorderColor = System.Drawing.Color.Empty;
+            this.btnEscolher.OnHoverButtonColor = System.Drawing.Color.Empty;
+            this.btnEscolher.OnHoverTextColor = System.Drawing.Color.Empty;
+            this.btnEscolher.Size = new System.Drawing.Size(53, 46);
+            this.btnEscolher.TabIndex = 8;
+            this.btnEscolher.TextColor = System.Drawing.Color.Empty;
+            this.btnEscolher.UseVisualStyleBackColor = false;
+            this.btnEscolher.Visible = false;
+            this.btnEscolher.Click += new System.EventHandler(this.BtnEscolher);
             // 
             // panel2
             // 
@@ -80,7 +118,6 @@ namespace Barbearia.Views
             this.button1.Size = new System.Drawing.Size(51, 44);
             this.button1.TabIndex = 7;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.BtnAdicionar);
             // 
             // label2
             // 
@@ -122,7 +159,7 @@ namespace Barbearia.Views
             this.roundedButton3.TabIndex = 4;
             this.roundedButton3.TextColor = System.Drawing.Color.Empty;
             this.roundedButton3.UseVisualStyleBackColor = false;
-            this.roundedButton3.Click += new System.EventHandler(this.BtnExcluir);
+            this.roundedButton3.Click += new System.EventHandler(this.roundedButton3_Click);
             // 
             // roundedButton2
             // 
@@ -142,17 +179,17 @@ namespace Barbearia.Views
             this.roundedButton2.TabIndex = 3;
             this.roundedButton2.TextColor = System.Drawing.Color.Empty;
             this.roundedButton2.UseVisualStyleBackColor = false;
-            this.roundedButton2.Click += new System.EventHandler(this.BtnAlterar);
             // 
-            // pictureBox1
+            // pbLogo
             // 
-            this.pictureBox1.BackgroundImage = global::Barbersoft.Properties.Resources.Logo_Empresa_Barbersoft1;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(586, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(272, 50);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pbLogo.BackgroundImage = global::Barbersoft.Properties.Resources.Logo_Empresa_Barbersoft1;
+            this.pbLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbLogo.Location = new System.Drawing.Point(315, 13);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(221, 44);
+            this.pbLogo.TabIndex = 2;
+            this.pbLogo.TabStop = false;
+            this.pbLogo.Visible = false;
             // 
             // txtadd
             // 
@@ -165,41 +202,45 @@ namespace Barbearia.Views
             this.txtadd.TabIndex = 1;
             this.txtadd.Text = "Adicionar";
             // 
-            // dgProfissional
+            // dgFornecedor
             // 
-            this.dgProfissional.AllowUserToAddRows = false;
-            this.dgProfissional.AllowUserToDeleteRows = false;
-            this.dgProfissional.AllowUserToResizeColumns = false;
-            this.dgProfissional.AllowUserToResizeRows = false;
-            this.dgProfissional.BackgroundColor = System.Drawing.Color.White;
-            this.dgProfissional.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgProfissional.Location = new System.Drawing.Point(0, 73);
-            this.dgProfissional.Name = "dgProfissional";
-            this.dgProfissional.ReadOnly = true;
-            this.dgProfissional.RowTemplate.Height = 25;
-            this.dgProfissional.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgProfissional.Size = new System.Drawing.Size(863, 423);
-            this.dgProfissional.TabIndex = 2;
+            this.dgFornecedor.AllowUserToAddRows = false;
+            this.dgFornecedor.AllowUserToDeleteRows = false;
+            this.dgFornecedor.AllowUserToResizeColumns = false;
+            this.dgFornecedor.AllowUserToResizeRows = false;
+            this.dgFornecedor.BackgroundColor = System.Drawing.Color.White;
+            this.dgFornecedor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgFornecedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgFornecedor.Location = new System.Drawing.Point(0, 74);
+            this.dgFornecedor.MultiSelect = false;
+            this.dgFornecedor.Name = "dgFornecedor";
+            this.dgFornecedor.ReadOnly = true;
+            this.dgFornecedor.RowTemplate.Height = 25;
+            this.dgFornecedor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgFornecedor.Size = new System.Drawing.Size(545, 304);
+            this.dgFornecedor.TabIndex = 3;
+            this.dgFornecedor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Fornecedor_MouseDoubleClick);
             // 
-            // ProfissionalView
+            // FornecedorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 496);
-            this.Controls.Add(this.dgProfissional);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(545, 378);
+            this.Controls.Add(this.dgFornecedor);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ProfissionalView";
+            this.Name = "FornecedorView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Profissional";
-            this.Load += new System.EventHandler(this.FormProfissionalLoad);
+            this.Text = "Fornecedor";
+            this.Load += new System.EventHandler(this.Fornecedor_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgProfissional)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFornecedor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,14 +248,16 @@ namespace Barbearia.Views
         #endregion
 
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private Custom.RoundedButton roundedButton3;
-        private Custom.RoundedButton roundedButton2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Barbearia.Custom.RoundedButton roundedButton3;
+        private Barbearia.Custom.RoundedButton roundedButton2;
+        private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label txtadd;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dgProfissional;
+        private System.Windows.Forms.DataGridView dgFornecedor;
+        private System.Windows.Forms.Label lblEscolher;
+        private Barbearia.Custom.RoundedButton btnEscolher;
     }
 }

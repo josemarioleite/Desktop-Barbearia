@@ -1,8 +1,10 @@
 ﻿using Barbersoft.Gestor;
 using Barbersoft.Models;
 using Barbersoft.PdfViewer.AtendimentoViewer;
+using Barbersoft.Utils;
 using Barbersoft.Views;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Barbearia.Views
@@ -124,6 +126,18 @@ namespace Barbearia.Views
                     isCollapsed = true;
                 }
             }
+        }
+        private void BtnContaPagar(object sender, EventArgs e)
+        {
+            new ContaPagarView().ShowDialog();
+        }
+        private void BtnFornecedor(object sender, EventArgs e)
+        {
+            new FornecedorView().ShowDialog();
+        }
+        private void BtnContaReceber(object sender, EventArgs e)
+        {
+            new ContaReceberView().ShowDialog();
         }
     }
 }

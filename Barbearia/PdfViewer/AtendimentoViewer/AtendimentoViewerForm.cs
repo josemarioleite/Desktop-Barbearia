@@ -1,5 +1,6 @@
 ﻿using Barbersoft.Utils;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Barbersoft.PdfViewer.AtendimentoViewer
@@ -22,6 +23,10 @@ namespace Barbersoft.PdfViewer.AtendimentoViewer
                 string arquivo = gerarPDF.GerarDocumentoPDF("Relatório de Atendimento", dtInicio.Value, dtFim.Value);
                 PDFViewerForm pdfViewer = new(arquivo);
                 pdfViewer.ShowDialog();
+                if (File.Exists(arquivo))
+                {
+                    File.Delete(arquivo);
+                }
             } else
             {
                 MessageBox.Show("A Data de Início não pode ser maior que a Data do Fim", "Atenção");

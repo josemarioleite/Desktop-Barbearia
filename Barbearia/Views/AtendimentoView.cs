@@ -37,10 +37,6 @@ namespace Barbersoft.Views
             {
                 if (dto.Situacao.ToLower().Equals("aberto"))
                 {
-                    dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.Aberto, typeof(byte[]));
-                }
-                else if (dto.Situacao.ToLower().Equals("financeiro"))
-                {
                     dto.imageSituacao = (byte[])converter.ConvertTo(Properties.Resources.financeiro, typeof(byte[]));
                 }
                 else if (dto.Situacao.ToLower().Equals("fechado"))
