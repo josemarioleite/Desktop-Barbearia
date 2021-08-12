@@ -1,4 +1,5 @@
-﻿using Barbersoft.Models;
+﻿using Barbersoft.Enum;
+using Barbersoft.Models;
 using Barbersoft.Utils;
 using Barbersoft.Views.FormCrud;
 using System;
@@ -85,6 +86,62 @@ namespace Barbersoft.Views
         {
             new ContaReceberForm(true).ShowDialog();
             RecebeDadosBanco();
+        }
+        private void BtnFechar(object sender, EventArgs e)
+        {
+            bool atualizado = AtualizaSituacaoContaReceber(SituacaoEnum.Fechado, "Tem certeza que deseja fechar este lançamento ?");
+            if (atualizado == true)
+            {
+                MessageBox.Show("Lançamento Fechado com sucesso!", "Aviso");
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível fazer o fechamento", "Aviso");
+            }
+        }
+        private void BtnCancelar(object sender, EventArgs e)
+        {
+            bool atualizado = AtualizaSituacaoContaReceber(SituacaoEnum.Cancelado, "Tem certeza que deseja cancelar este lançamento ?");
+            if (atualizado == true)
+            {
+                MessageBox.Show("Lançamento Cancelado com sucesso!", "Aviso");
+            }
+            else
+            {
+                MessageBox.Show("Não foi possível fazer o cancelamento", "Aviso");
+            }
+        }
+        private bool AtualizaSituacaoContaReceber(SituacaoEnum situacao, string titulo)
+        {
+            bool atualizado = false;
+            if (dgContaReceber.Rows.Count > 0)
+            {
+                string status = (string)dgContaReceber.SelectedRows[0].Cells[6].Value;
+
+                if (status.ToLower().Trim().Equals("aberto"))
+                {
+                    int id = (int)dgContaReceber.SelectedRows[0].Cells[1].Value;
+                    ContaReceber contaReceber = dados.ObterDados<ContaReceber>().FirstOrDefault(c => c.Id == id);
+                    contaReceber.SituacaoId = (int)situacao;
+                    DialogResult dialogResult = MessageBox.Show(titulo, "Atenção", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        dados.AtualizaDados(contaReceber);
+                        RecebeDadosBanco();
+                        atualizado = true;
+                    }
+                } else
+                {
+                    MessageBox.Show($"Este lançamento está {status}");
+                    atualizado = false;
+                }        
+            }
+            else
+            {
+                MessageBox.Show("Sem Dados para serem excluídos");
+                atualizado = false;
+            }
+            return atualizado;
         }
     }
 }

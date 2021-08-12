@@ -278,7 +278,7 @@ namespace Barbersoft.Views.FormCrud
             // txtSituacao
             // 
             this.txtSituacao.BackColor = System.Drawing.Color.White;
-            this.txtSituacao.Location = new System.Drawing.Point(30, 259);
+            this.txtSituacao.Location = new System.Drawing.Point(30, 230);
             this.txtSituacao.Name = "txtSituacao";
             this.txtSituacao.Size = new System.Drawing.Size(253, 23);
             this.txtSituacao.TabIndex = 58;
