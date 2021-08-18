@@ -1,10 +1,8 @@
 ﻿using Barbersoft.Gestor;
 using Barbersoft.Models;
 using Barbersoft.PdfViewer.AtendimentoViewer;
-using Barbersoft.Utils;
 using Barbersoft.Views;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Barbearia.Views

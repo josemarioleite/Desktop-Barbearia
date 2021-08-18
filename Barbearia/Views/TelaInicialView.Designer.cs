@@ -123,7 +123,7 @@ namespace Barbearia.Views
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(84)))), ((int)(((byte)(214)))));
+            this.button4.BackColor = System.Drawing.Color.Gray;
             this.button4.Dock = System.Windows.Forms.DockStyle.Top;
             this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -140,7 +140,7 @@ namespace Barbearia.Views
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(84)))), ((int)(((byte)(214)))));
+            this.button3.BackColor = System.Drawing.Color.Gray;
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
             this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -189,7 +189,7 @@ namespace Barbearia.Views
             // 
             // button16
             // 
-            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(74)))), ((int)(((byte)(200)))));
+            this.button16.BackColor = System.Drawing.Color.Gray;
             this.button16.Dock = System.Windows.Forms.DockStyle.Top;
             this.button16.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -206,7 +206,7 @@ namespace Barbearia.Views
             // 
             // button13
             // 
-            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(74)))), ((int)(((byte)(200)))));
+            this.button13.BackColor = System.Drawing.Color.Gray;
             this.button13.Dock = System.Windows.Forms.DockStyle.Top;
             this.button13.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -223,7 +223,7 @@ namespace Barbearia.Views
             // 
             // button12
             // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(74)))), ((int)(((byte)(200)))));
+            this.button12.BackColor = System.Drawing.Color.Gray;
             this.button12.Dock = System.Windows.Forms.DockStyle.Top;
             this.button12.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -240,7 +240,7 @@ namespace Barbearia.Views
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(74)))), ((int)(((byte)(200)))));
+            this.button2.BackColor = System.Drawing.Color.Gray;
             this.button2.Dock = System.Windows.Forms.DockStyle.Top;
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -257,7 +257,7 @@ namespace Barbearia.Views
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(74)))), ((int)(((byte)(200)))));
+            this.button5.BackColor = System.Drawing.Color.Gray;
             this.button5.Dock = System.Windows.Forms.DockStyle.Top;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -306,7 +306,7 @@ namespace Barbearia.Views
             // 
             // button15
             // 
-            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(84)))), ((int)(((byte)(214)))));
+            this.button15.BackColor = System.Drawing.Color.Gray;
             this.button15.Dock = System.Windows.Forms.DockStyle.Top;
             this.button15.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -322,7 +322,7 @@ namespace Barbearia.Views
             // 
             // button14
             // 
-            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(84)))), ((int)(((byte)(214)))));
+            this.button14.BackColor = System.Drawing.Color.Gray;
             this.button14.Dock = System.Windows.Forms.DockStyle.Top;
             this.button14.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -338,7 +338,7 @@ namespace Barbearia.Views
             // 
             // button11
             // 
-            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(84)))), ((int)(((byte)(214)))));
+            this.button11.BackColor = System.Drawing.Color.Gray;
             this.button11.Dock = System.Windows.Forms.DockStyle.Top;
             this.button11.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -355,7 +355,7 @@ namespace Barbearia.Views
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(84)))), ((int)(((byte)(214)))));
+            this.button1.BackColor = System.Drawing.Color.Gray;
             this.button1.Dock = System.Windows.Forms.DockStyle.Top;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -372,7 +372,7 @@ namespace Barbearia.Views
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(84)))), ((int)(((byte)(214)))));
+            this.button6.BackColor = System.Drawing.Color.Gray;
             this.button6.Dock = System.Windows.Forms.DockStyle.Top;
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

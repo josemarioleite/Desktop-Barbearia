@@ -95,10 +95,6 @@ namespace Barbersoft.Views
             {
                 MessageBox.Show("Lançamento Cancelado com sucesso!", "Aviso");
             }
-            else
-            {
-                MessageBox.Show("Não foi possível fazer o cancelamento", "Aviso");
-            }
         }
         private void BtnFechar(object sender, EventArgs e)
         {
@@ -106,9 +102,6 @@ namespace Barbersoft.Views
             if (atualizado == true)
             {
                 MessageBox.Show("Lançamento Fechado com sucesso!", "Aviso");
-            } else
-            {
-                MessageBox.Show("Não foi possível fazer o fechamento", "Aviso");
             }
         }
         private bool AtualizaSituacaoContaPagar(SituacaoEnum situacao, string titulo)

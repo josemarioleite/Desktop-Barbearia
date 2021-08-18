@@ -21,8 +21,12 @@
   
   <ItemGroup>
 	<PackageReference Include="AutoMapper" Version="10.1.1" />
+	<PackageReference Include="FastReport.Compat" Version="2021.2.10" />
+	<PackageReference Include="FastReport.DataVisualization" Version="2021.2.3" />
+	<PackageReference Include="FastReport.OpenSource" Version="2021.3.22" />
+	<PackageReference Include="FastReport.OpenSource.Data.MySql" Version="2021.3.0" />
 	<PackageReference Include="iTextSharp" Version="5.5.13.2" />
-	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.9">
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
@@ -35,6 +39,10 @@
 	<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
 	<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
 	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\FastReport\src\FastReport.OpenSource.Winforms.Demo\FastReport.OpenSource.Winforms.Demo.csproj" />
   </ItemGroup>
   
   <ItemGroup>

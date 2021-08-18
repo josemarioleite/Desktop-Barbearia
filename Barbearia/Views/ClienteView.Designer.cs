@@ -206,6 +206,7 @@ namespace Barbersoft.Views
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCliente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgCliente.Location = new System.Drawing.Point(0, 109);
+            this.dgCliente.MultiSelect = false;
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.ReadOnly = true;
             this.dgCliente.RowTemplate.Height = 25;

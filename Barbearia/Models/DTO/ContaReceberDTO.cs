@@ -9,6 +9,7 @@
         public string DataVencimento { get; set; }
         public string Cliente { get; set; }
         public string Situacao { get; set; }
+        public string AtendimentoId { get; set; }
         public decimal Valor { get; set; }
     }
 }

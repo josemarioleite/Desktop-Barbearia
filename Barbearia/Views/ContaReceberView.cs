@@ -31,7 +31,8 @@ namespace Barbersoft.Views
             dgContaReceber.Columns[4].Width = 125;
             dgContaReceber.Columns[5].Width = 200;
             dgContaReceber.Columns[6].Width = 100;
-            dgContaReceber.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgContaReceber.Columns[7].Visible = false;
+            dgContaReceber.Columns[8].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgContaReceber.Columns.Cast<DataGridViewColumn>().ToList().ForEach(f => f.SortMode = DataGridViewColumnSortMode.NotSortable);
 
             dgContaReceber.Columns[0].HeaderText = "";
@@ -41,17 +42,18 @@ namespace Barbersoft.Views
             dgContaReceber.Columns[4].HeaderText = "Data de Vencimento";
             dgContaReceber.Columns[5].HeaderText = "Cliente";
             dgContaReceber.Columns[6].HeaderText = "Situação";
-            dgContaReceber.Columns[7].HeaderText = "Valor";
+            //dgContaReceber.Columns[7].HeaderText = "Atendimento";
+            dgContaReceber.Columns[8].HeaderText = "Valor";
 
             dgContaReceber.Columns[1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgContaReceber.Columns[3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgContaReceber.Columns[4].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgContaReceber.Columns[7].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgContaReceber.Columns[8].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgContaReceber.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgContaReceber.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgContaReceber.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgContaReceber.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgContaReceber.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             dgContaReceber.Columns[2].Resizable = DataGridViewTriState.True;
             dgContaReceber.Columns[5].Resizable = DataGridViewTriState.True;
@@ -94,10 +96,6 @@ namespace Barbersoft.Views
             {
                 MessageBox.Show("Lançamento Fechado com sucesso!", "Aviso");
             }
-            else
-            {
-                MessageBox.Show("Não foi possível fazer o fechamento", "Aviso");
-            }
         }
         private void BtnCancelar(object sender, EventArgs e)
         {
@@ -105,10 +103,6 @@ namespace Barbersoft.Views
             if (atualizado == true)
             {
                 MessageBox.Show("Lançamento Cancelado com sucesso!", "Aviso");
-            }
-            else
-            {
-                MessageBox.Show("Não foi possível fazer o cancelamento", "Aviso");
             }
         }
         private bool AtualizaSituacaoContaReceber(SituacaoEnum situacao, string titulo)

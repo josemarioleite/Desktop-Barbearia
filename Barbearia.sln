@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Barbearia", "Barbearia\Barbearia.csproj", "{9CB1D52C-2D6C-44E5-90DE-DCD3260F5404}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastReport.OpenSource.Winforms.Demo", "FastReport\src\FastReport.OpenSource.Winforms.Demo\FastReport.OpenSource.Winforms.Demo.csproj", "{B98F7D90-37F1-4BC8-A7E2-48922FB67452}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastReport.OpenSource.Winforms", "FastReport\src\FastReport.OpenSource.Winforms\FastReport.OpenSource.Winforms.csproj", "{016FD718-A501-4138-B652-B8F3D4411182}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9CB1D52C-2D6C-44E5-90DE-DCD3260F5404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB1D52C-2D6C-44E5-90DE-DCD3260F5404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CB1D52C-2D6C-44E5-90DE-DCD3260F5404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98F7D90-37F1-4BC8-A7E2-48922FB67452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98F7D90-37F1-4BC8-A7E2-48922FB67452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98F7D90-37F1-4BC8-A7E2-48922FB67452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98F7D90-37F1-4BC8-A7E2-48922FB67452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{016FD718-A501-4138-B652-B8F3D4411182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{016FD718-A501-4138-B652-B8F3D4411182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{016FD718-A501-4138-B652-B8F3D4411182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{016FD718-A501-4138-B652-B8F3D4411182}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

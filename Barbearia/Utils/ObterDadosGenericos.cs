@@ -60,18 +60,19 @@ namespace Barbersoft.Utils
             ImageConverter converter = new();
             List<ContaReceberDTO> contaReceber =
                 (from a in ObterDados<ContaReceber>()
-                 join b in ObterDados<Cliente>() on a.ClienteId equals b.Id
-                 join c in ObterDados<Situacao>() on a.SituacaoId equals c.Id
-                 select new ContaReceberDTO()
-                 {
-                     Id = a.Id,
-                     Descricao = a.Descricao.ToUpper(),
-                     DataLancamento = a.DataLancamento.ToShortDateString(),
-                     DataVencimento = a.DataVencimento.ToShortDateString(),
-                     Cliente = b.Nome.ToUpper(),
-                     Situacao = c.Descricao.ToUpper(),
-                     Valor = a.Valor
-                 }).OrderByDescending(a => a.Id).ToList();
+                join b in ObterDados<Cliente>() on a.ClienteId equals b.Id
+                join c in ObterDados<Situacao>() on a.SituacaoId equals c.Id
+                select new ContaReceberDTO()
+                {
+                    Id = a.Id,
+                    Descricao = a.Descricao.ToUpper(),
+                    DataLancamento = a.DataLancamento.ToShortDateString(),
+                    DataVencimento = a.DataVencimento.ToShortDateString(),
+                    Cliente = b.Nome.ToUpper(),
+                    Situacao = c.Descricao.ToUpper(),
+                    Valor = a.Valor,
+                    AtendimentoId = a.AtendimentoId == null ? "S/ Atend.:" : a.AtendimentoId.ToString()
+                }).OrderByDescending(a => a.Id).ToList();
             foreach (ContaReceberDTO dto in contaReceber)
             {
                 if (dto.Situacao.ToLower().Equals("aberto"))

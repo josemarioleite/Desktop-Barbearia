@@ -174,6 +174,7 @@ namespace Barbearia.Views
             this.dgProfissional.BackgroundColor = System.Drawing.Color.White;
             this.dgProfissional.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgProfissional.Location = new System.Drawing.Point(0, 73);
+            this.dgProfissional.MultiSelect = false;
             this.dgProfissional.Name = "dgProfissional";
             this.dgProfissional.ReadOnly = true;
             this.dgProfissional.RowTemplate.Height = 25;

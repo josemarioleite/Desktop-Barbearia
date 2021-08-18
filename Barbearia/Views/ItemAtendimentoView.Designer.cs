@@ -201,6 +201,7 @@ namespace Barbersoft.Views
             this.dgItem.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgItem.Location = new System.Drawing.Point(0, 120);
+            this.dgItem.MultiSelect = false;
             this.dgItem.Name = "dgItem";
             this.dgItem.ReadOnly = true;
             this.dgItem.RowTemplate.Height = 25;

@@ -154,6 +154,7 @@ namespace Barbearia.Views
             this.dgServico.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgServico.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgServico.Location = new System.Drawing.Point(0, 74);
+            this.dgServico.MultiSelect = false;
             this.dgServico.Name = "dgServico";
             this.dgServico.ReadOnly = true;
             this.dgServico.RowTemplate.Height = 25;

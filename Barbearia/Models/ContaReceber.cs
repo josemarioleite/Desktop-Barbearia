@@ -11,6 +11,7 @@ namespace Barbersoft.Models
         public int ClienteId { get; set; }
         public int SituacaoId { get; set; }
         public int OrigemId { get; set; }
+        public int? AtendimentoId { get; set; }
         public decimal Valor { get; set; }
         public DateTime CriadoEm { get; set; } = DateTime.Now;
         public int CriadoPor { get; set; }

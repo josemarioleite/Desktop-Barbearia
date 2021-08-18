@@ -31,11 +31,11 @@ namespace Barbersoft.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EstoqueProdutoView));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtadd = new System.Windows.Forms.Label();
             this.dgEstoqueProduto = new System.Windows.Forms.DataGridView();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgEstoqueProduto)).BeginInit();
@@ -54,6 +54,18 @@ namespace Barbersoft.Views
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(639, 74);
             this.panel1.TabIndex = 2;
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(71, 21);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(197, 23);
+            this.lblTitulo.TabIndex = 8;
+            this.lblTitulo.Text = "Estoque de Produto";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnAdd
             // 
@@ -99,6 +111,7 @@ namespace Barbersoft.Views
             this.dgEstoqueProduto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgEstoqueProduto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgEstoqueProduto.Location = new System.Drawing.Point(0, 74);
+            this.dgEstoqueProduto.MultiSelect = false;
             this.dgEstoqueProduto.Name = "dgEstoqueProduto";
             this.dgEstoqueProduto.ReadOnly = true;
             this.dgEstoqueProduto.RowTemplate.Height = 25;
@@ -106,19 +119,7 @@ namespace Barbersoft.Views
             this.dgEstoqueProduto.Size = new System.Drawing.Size(639, 267);
             this.dgEstoqueProduto.TabIndex = 3;
             // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(71, 21);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(197, 23);
-            this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "Estoque de Produto";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // EstoqueProduto
+            // EstoqueProdutoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -129,7 +130,7 @@ namespace Barbersoft.Views
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "EstoqueProduto";
+            this.Name = "EstoqueProdutoView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Estoque de Produto";
             this.Load += new System.EventHandler(this.EstoqueLoad);

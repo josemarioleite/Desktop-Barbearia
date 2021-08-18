@@ -25,6 +25,7 @@ namespace Barbearia.Database
         public DbSet<ContaPagar> ContaPagar { get; set; }
         public DbSet<ContaReceber> ContaReceber { get; set; }
         public DbSet<Fornecedor> Fornecedor { get; set; }
+        public DbSet<Recebimento> Recebimento { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -362,6 +363,23 @@ namespace Barbearia.Database
                 entity.Property(e => e.Nome)
                     .IsRequired()
                     .HasMaxLength(45);
+            });
+            modelBuilder.Entity<ContaReceber>(entity =>
+            {
+                entity.ToTable("recebimento");
+
+                entity.HasCharSet("utf8")
+                    .UseCollation("utf8_general_ci");
+
+                entity.Property(e => e.AlteradoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.CriadoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.DeletadoEm).HasColumnType("timestamp");
+
+                entity.Property(e => e.Descricao)
+                    .IsRequired()
+                    .HasMaxLength(100);
             });
             OnModelCreatingPartial(modelBuilder);
         }
